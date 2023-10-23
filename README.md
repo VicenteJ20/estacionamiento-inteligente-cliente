@@ -4,7 +4,9 @@ Este repositorio contiene la aplicación cliente que utilizaremos para llevar a 
 
 ## Primeros pasos
 
-### 1) Configurando el entorno de desarrollo
+A continuación se listan algunos pasos requeridos para ejecutar la app correctamente, también se pueden omitir los que están marcados, ya que, pueden ser sustituidos por servidores cloud u otro medio.
+
+## 1) Configurando el entorno de desarrollo
 
 #### Instalar NodeJS 20 o superior
 ---
@@ -26,3 +28,46 @@ El gestor de paquetes utilizado para trabajar con este proyecto es PNPM, el cual
 [Descarga PNPM](https://pnpm.io/)
 
 Este gestor de paquetes representa algunas mejoras importantes debido a como maneja internamente los archivos en disco, pueden encontrar más información [Aquí](https://pnpm.io/motivation)
+
+
+## 2) Instalar Docker Engine (opcional)
+
+Este paso es opcional, si no se quiere instalar Docker basta con instalar los servicios externos a la app en el propio equipo (host) o en una máquina en la nube.
+
+En este caso, el servicio adicional es MariaDB, es importante utilizar MariaDB y NO MySQL debido a las licencias privativas de esta última.
+
+### Descarga de Docker Engine y Docker Hub
+
+Para descargar Docker solo hace falta dirigirse al siguiente enlace y seguir los pasos de la documentación oficial: [DESCARGAR DOCKER WINDOWS](https://docs.docker.com/desktop/install/windows-install/) O [DESCARGAR DOCKER LINUX](https://docs.docker.com/desktop/install/linux-install/) en este último caso está disponible para Ubuntu, Fedora y Debian (Free).
+
+### Configuración extra (Windows)
+
+En el caso de Windows es necesario tener activa la característica de máquina virtual y el Subsistema de Windows para Linux en su versión 2.0.
+
+La guía oficial, se encuentra a continuación:
+
+- [MICROSOFT: ACTIVAR WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+- [DOCKER: WSL 2 en Windows](https://docs.docker.com/desktop/wsl/)
+
+
+## 3) Ejecutar el proyecto.
+
+Para esto es necesario contar con NodeJS y PNPM y hacer lo siguiente:
+
+- Entrar en la ruta raíz del proyecto (a la misma altura del package.json).
+- Ejecutar Docker Engine (opcional).
+- Abrir una nueva terminal y ejecutar:
+- ```docker compose up```
+
+Esto dejará corriendo el contenedor en base a las especificaciones escritas en el archivo **docker-compose.yml**
+
+Finalmente solo es necesario situarse en la raíz del proyecto desde una terminal y escribir lo siguiente:
+
+```pnpm next dev```
+
+## IMPORTANTE
+
+Crear ramas en github asociadas a lo que se hará con la siguiente nomenclatura:
+
+- feat/algo => utilizar cuando se agregue una nueva característica.
+- fix/algo => utilizar cuando se corrija o edite un archivo preexistente.
