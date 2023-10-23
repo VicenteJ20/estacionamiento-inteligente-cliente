@@ -1,0 +1,132 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  AuthLogs AuthLogs[]
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserRole {
+  id   Int    @id
+  name String @unique
+  User User[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Int
+  accounts      Account[]
+  sessions      Session[]
+
+  user         UserRole       @relation(fields: [role], references: [id], onDelete: Cascade)
+  ParkingPlace ParkingPlace[]
+  Board        Board[]
+  AuthLogs     AuthLogs[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Aquí termina la autenticación como tal
+// Ahora continúa el resto de los modelos, que deberíamos considerar extraerlos a una base de datos adicional
+
+model ParkingPlace {
+  id         String   @id @default(cuid())
+  manager    String
+  latitude   Float
+  longitude  Float
+  altitude   Float
+  region     String
+  comuna     String
+  ciudad     String
+  postalCode Int
+  createdAt  DateTime @default(now())
+
+  // Por el momento se considera únicamente un usuario como clave foránea, sin embargo, hay que considerar que sería buena idea limitar las regions, comunas y códigos postales a valores predefinidos donde operaremos el servicio en la base de datos.
+  user User @relation(fields: [manager], references: [id], onDelete: Cascade)
+}
+
+model Area {
+  id              String   @id @default(cuid())
+  creador         String
+  createdAt       DateTime @default(now())
+  areaName        String   @unique @db.VarChar(200)
+  oldName         String?  @db.VarChar(200)
+  areaDescription String?  @db.Text
+  areaLogo        String?  @db.Text
+  parkingPlace    String
+  Board           Board[]
+}
+
+model Board {
+  id           String   @id @default(cuid())
+  model        String   @db.VarChar(200)
+  brand        String   @db.VarChar(200)
+  serialNumber String   @db.VarChar(250)
+  installedAt  DateTime
+  installedBy  String
+  area         String
+
+  user   User     @relation(fields: [installedBy], references: [id], onDelete: Cascade)
+  areaId Area     @relation(fields: [area], references: [id], onDelete: Cascade)
+  Sensor Sensor[]
+}
+
+model Sensor {
+  id          String   @id @default(cuid())
+  trigger     Int
+  echo        Int
+  boardId     String
+  installedAt DateTime @default(now())
+
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+}
+
+model AuthLogs {
+  id        String   @id @default(cuid())
+  userId    String
+  accountId String
+  action    String   @db.Text
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
