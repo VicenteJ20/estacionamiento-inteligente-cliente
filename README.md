@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Estacionamiento Inteligente
 
-## Getting Started
+Este repositorio contiene la aplicación cliente que utilizaremos para llevar a cabo el proyecto. Así también, se encuentran ficheros de configuración de servicios adicionales, como docker-compose que se utiliza para configurar un contenedor de MariaDB en docker. Y también, PRISMA que es un ORM que nos permite generar modelos y posteriormente migraciones para que todos trabajemos con una base de datos en igualdad de condiciones aún cuando estemos trabajando en local.
 
-First, run the development server:
+## Primeros pasos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1) Configurando el entorno de desarrollo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Instalar NodeJS 20 o superior
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Puede descargase e instalarse desde la web oficial en el siguiente link:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[Descargar NODEJS 20 o superior desde la web oficial](https://nodejs.org/es)
 
-## Learn More
+En caso de encontrarse utilizando un sistema operativo Linux, ya sea basado en Debian, Arch o RHEL, para obtener un paquete actualizado de NodeJS es necesario acceder a NodeSource y seguir los pasos para la instalación en la distro correspondiente:
 
-To learn more about Next.js, take a look at the following resources:
+[Descargar NODEJS 20 o superior desde NodeSource](https://github.com/nodesource/distributions)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Escoger gestor de paquetes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Por defecto, al instalar NodeJS tanto desde la web oficial como de nodesource, vendrá acompañado de NPM, el cual es el gestor de paquetes por defecto de NodeJS. Sin embargo, este gestor de paquetes es lento y medianamente inserguro frente a sus competidores como Yarn y PNPM.
 
-## Deploy on Vercel
+El gestor de paquetes utilizado para trabajar con este proyecto es PNPM, el cual se puede descargar e instalar desde el siguiente enlace:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[Descarga PNPM](https://pnpm.io/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este gestor de paquetes representa algunas mejoras importantes debido a como maneja internamente los archivos en disco, pueden encontrar más información [Aquí](https://pnpm.io/motivation)
