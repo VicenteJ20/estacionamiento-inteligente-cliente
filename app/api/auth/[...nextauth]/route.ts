@@ -31,6 +31,8 @@ export const authOptions = {
 
         if (!user) return null
 
+        if (!user.passwordHash) return null
+
         const validPassword = await bcrypt.compare(password, user.passwordHash)
         console.log(validPassword)
 
@@ -42,7 +44,6 @@ export const authOptions = {
           name: user.name,
           role: user.role,
         }
-
         return infoUser
       }
     }),
@@ -60,6 +61,8 @@ export const authOptions = {
     },
     async session({ session, user, token }: any) {
       session.user.id = user.id
+      console.log('SESSION: ')
+      console.log(session)
       return session
     }
   },
