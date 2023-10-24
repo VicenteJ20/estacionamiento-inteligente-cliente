@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GithubProvider from 'next-auth/providers/github'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
 import { Adapter } from 'next-auth/adapters'
@@ -35,9 +36,19 @@ export const authOptions = {
 
         if (!validPassword) return null
 
-        return user
+        const infoUser = {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        }
 
+        return infoUser
       }
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     })
   ],
   callbacks: {
