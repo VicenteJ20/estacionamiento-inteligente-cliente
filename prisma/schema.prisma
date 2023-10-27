@@ -47,11 +47,12 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role          Int
+  role          Int?
+  passwordHash  String?
   accounts      Account[]
   sessions      Session[]
 
-  user         UserRole       @relation(fields: [role], references: [id], onDelete: Cascade)
+  user         UserRole?       @relation(fields: [role], references: [id], onDelete: Cascade)
   ParkingPlace ParkingPlace[]
   Board        Board[]
   AuthLogs     AuthLogs[]
