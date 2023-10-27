@@ -11,6 +11,9 @@ const prisma = new PrismaClient()
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET as string,
   adapter: PrismaAdapter(prisma) as Adapter,
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -20,9 +23,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
-
-        console.log(credentials)
-
+      
         const { email, password } = credentials
 
         const user = await prisma.user.findUnique({
@@ -34,39 +35,28 @@ export const authOptions = {
         if (!user.passwordHash) return null
 
         const validPassword = await bcrypt.compare(password, user.passwordHash)
-        console.log(validPassword)
 
         if (!validPassword) return null
 
-        const infoUser = {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        }
-        return infoUser
-      }
+        return user
+      },
     }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    })
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }: any) {
-      return true
+    async jwt({ token, user, session, trigger}: any) {
+      if (user) token.role = user.role
+
+      if (trigger === 'update' && session?.name) token.name = session.session.user.name
+
+      return token
     },
-    async redirect({ url, baseUrl }: any) {
-      return baseUrl
-    },
-    async session({ session, user, token }: any) {
-      session.user.id = user.id
-      console.log('SESSION: ')
-      console.log(session)
-      return session
+    async session(session: any) {
+      session.session.user.id = session.token.sub
+      session.session.user.role = session.token.role
+      return session.session
     }
-  },
-}
+  }
+} as any
 const handler = NextAuth(authOptions)
 
 export {
