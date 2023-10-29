@@ -3,12 +3,37 @@
 import { SignUpSchema } from "@/app/_schemas/signup"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 const SignUpForm = () => {
-  const handleSubmit = (values: any, { setSubmitting, resetForm }: any) => {
-    console.log(values)
+  const router = useRouter()
+
+  const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
+
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: values.name,
+          lastname: values.lastname,
+          email: values.email,
+          password: values.password
+        })
+      })
+
+      if (res.status === 201) {
+        setSubmitting(false)
+        resetForm()
+        router.push('/auth/signin')
+      }
+
+      resetForm()
+    } catch (err: any) {
+      console.log('Error: ', err)
+    }
+
     setSubmitting(false)
-    resetForm()
   }
 
   return (
