@@ -7,14 +7,13 @@ import Link from "next/link"
 
 const LoginForm = () => {
   const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
-    const res = await signIn('credentials', {
-      email: values.email,
-      password: values.password,
-    })
-
-    if (!res) {
-      alert('No se pudo iniciar sesión')
-      return
+    try {
+      await signIn('credentials', {
+        email: values.email,
+        password: values.password,
+      })
+    } catch (err: any) {
+      console.log(err)
     }
     setSubmitting(false)
     resetForm(true)
