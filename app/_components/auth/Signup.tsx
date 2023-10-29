@@ -43,8 +43,8 @@ const SignUpForm = () => {
               </div>
               <div className='flex flex-col gap-3'>
                 <label htmlFor='confirmpassword' className='text-lg text-zinc-800'>Confirmar contraseña:</label>
-                <Field type='confirmpassword' name='confirmpassword' id='confirmpassword' placeholder='Vuelva a ingresar su contraseña' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl' />
-                <span className="text-red-500 font-medium"><ErrorMessage name='password' /></span>
+                <Field type='password' name='confirmpassword' id='confirmpassword' placeholder='Vuelva a ingresar su contraseña' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl' />
+                <span className="text-red-500 font-medium"><ErrorMessage name='confirmpassword' /></span>
               </div>
               <div className='text-end'>
                 <Link href='/auth/forgot-password' className='text-blue-500 hover:text-blue-300 transition-all duration-300 ease-in-out visited:text-purple-400 text-lg'>¿Ya tienes una cuenta? - Inicia sesión aquí.</Link>
