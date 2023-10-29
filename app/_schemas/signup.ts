@@ -4,6 +4,6 @@ export const SignUpSchema = Yup.object().shape({
   name: Yup.string().required('Debe ingresar un nombre.').min(3, 'El nombre debe tener al menos 3 caracteres.'),
   lastname: Yup.string().required('Debe ingresar un apellido.').min(3, 'El apellido debe tener al menos 3 caracteres.'),
   email: Yup.string().email('El correo electrónico ingresado no es válido').required('Debe ingresar un correo electrónico.'),
-  password: Yup.string().required('Debe ingresar una contraseña.').min(8, 'La contraseña debe tener al menos 8 caracteres.').matches(/^(?=.[0-9])(?=.[a-z])(?=.*[A-Z]).{8,}$/, 'La contraseña debe tener al menos un número, una letra mayúscula y una letra minúscula'),
-  confirmpassword: Yup.string().required('Debe ingresar una contraseña.').min(8, 'La contraseña debe tener al menos 8 carácteres.').oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir.')
+  password: Yup.string().required('Debe ingresar una contraseña.').min(8, 'La contraseña debe tener al menos 8 caracteres.').matches(/^[a-zA-Z][a-zA-Z0-9]{7,}[a-zA-Z0-9][a-zA-Z0-9][^0-9]{1,}[^a-zA-Z]{1,}$/, 'La contraseña debe tener al menos un número, una letra mayúscula, una letra minúscula y un carácter especial.'),
+  confirmpassword: Yup.string().required('Debe ingresar una contraseña.').min(8, 'La contraseña debe tener al menos 8 carácteres.').oneOf([(Yup.ref('password')),], 'Las contraseñas deben coincidir.')
 })
