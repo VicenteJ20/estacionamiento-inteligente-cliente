@@ -13,7 +13,7 @@ const AuthLayout = async ({
   if (session) redirect('/dashboard')
 
   return (
-    <main className='w-full min-h-screen p-5 grid grid-cols-1 md:grid-cols-2 gap-5'>
+    <main className='w-full min-h-screen md:p-5 grid grid-cols-1 md:grid-cols-2 gap-5'>
       <CarouselAuth />
       {children}
     </main>

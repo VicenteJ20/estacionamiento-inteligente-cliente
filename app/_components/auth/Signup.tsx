@@ -5,8 +5,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import Link from "next/link"
 
 const SignUpForm = () => {
-  const handleSubmit = (values: any, { setSubmitting }: any) => {
+  const handleSubmit = (values: any, { setSubmitting, resetForm }: any) => {
     console.log(values)
+    setSubmitting(false)
+    resetForm()
   }
 
   return (
@@ -47,7 +49,7 @@ const SignUpForm = () => {
                 <span className="text-red-500 font-medium"><ErrorMessage name='confirmpassword' /></span>
               </div>
               <div className='text-end'>
-                <Link href='/auth/forgot-password' className='text-blue-500 hover:text-blue-300 transition-all duration-300 ease-in-out visited:text-purple-400 text-lg'>¿Ya tienes una cuenta? - Inicia sesión aquí.</Link>
+                <Link href='/auth/signin' className='text-blue-500 hover:text-blue-300 transition-all duration-300 ease-in-out visited:text-purple-400 text-sm md:text-lg'>¿Ya tienes una cuenta? - Inicia sesión aquí.</Link>
               </div>
               <div className='w-full flex flex-col gap-8'>
                 <button disabled={isSubmitting} type='submit' className='bg-blue-500 px-4 w-full py-3 rounded-md text-lg xl:text-xl text-white font-medium hover:bg-blue-400 transition-all ease-in-out duration-300'>Registrarse</button>
