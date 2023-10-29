@@ -4,7 +4,7 @@ import { CarouselLogIninfo } from "@/app/_dictionaries/es-CL"
 const SignInPage = () => {
   const { title, brand } = CarouselLogIninfo
   return (
-    <section className='flex flex-col gap-20 px-8 justify-center relative'>
+    <section className='flex flex-col gap-16 px-8 justify-center relative'>
       <h1
       className='font-semibold text-zinc-800 text-3xl md:text-4xl text-center'
       >{title}<br /><span className='text-blue-500'>{brand}</span></h1>
