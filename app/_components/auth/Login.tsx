@@ -2,11 +2,22 @@
 
 import { LoginShema } from "@/app/_schemas/login"
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import { signIn } from "next-auth/react"
 import Link from "next/link"
 
 const LoginForm = () => {
-  const handleSubmit = (values: any, { setSubmitting }: any) => {
-    console.log(values)
+  const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
+    const res = await signIn('credentials', {
+      email: values.email,
+      password: values.password,
+    })
+
+    if (!res) {
+      alert('No se pudo iniciar sesión')
+      return
+    }
+    setSubmitting(false)
+    resetForm(true)
   }
 
   return (
