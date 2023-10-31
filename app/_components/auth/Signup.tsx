@@ -4,8 +4,13 @@ import { SignUpSchema } from "@/app/_schemas/signup"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import ReCAPTCHA from "react-google-recaptcha"
 
 const SignUpForm = () => {
+  const [error, setError] = useState('')
+  const [captcha, setCaptcha] = useState(false)
+
   const router = useRouter()
 
   const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
@@ -34,6 +39,10 @@ const SignUpForm = () => {
     }
 
     setSubmitting(false)
+  }
+
+  const handleChange = () => {
+    setCaptcha(true)
   }
 
   return (
@@ -76,9 +85,22 @@ const SignUpForm = () => {
               <div className='text-end'>
                 <Link href='/auth/signin' className='text-blue-500 hover:text-blue-300 transition-all duration-300 ease-in-out visited:text-purple-400 text-sm md:text-lg'>¿Ya tienes una cuenta? - Inicia sesión aquí.</Link>
               </div>
-              <div className='w-full flex flex-col gap-8'>
-                <button disabled={isSubmitting} type='submit' className='bg-blue-500 px-4 w-full py-3 rounded-md text-lg xl:text-xl text-white font-medium hover:bg-blue-400 transition-all ease-in-out duration-300'>Registrarse</button>
+              <div className='flex flex-col gap-4 item-start'>
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+                  onChange={handleChange}
+                  size='normal'
+                  theme='light'
+                  onExpired={() => setCaptcha(false)}
+                />
               </div>
+              {
+                captcha && (
+                  <div className='w-full flex flex-col gap-8'>
+                    <button disabled={isSubmitting} type='submit' className='bg-blue-500 px-4 w-full py-3 rounded-md text-lg xl:text-xl text-white font-medium hover:bg-blue-400 transition-all ease-in-out duration-300'>Registrarse</button>
+                  </div>
+                )
+              }
             </Form>
           </>
         )}
