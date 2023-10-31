@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../[...nextauth]/route"
 import { NextResponse } from "next/server"
+import bcrypt from 'bcrypt'
 
 const handler = async (req: Request) => {
   const session = await getServerSession(authOptions)
@@ -12,12 +13,14 @@ const handler = async (req: Request) => {
 
     const prisma = new PrismaClient()
 
+    const passwordHash = await bcrypt.hash(body.password, 12)
+    
     try {
       await prisma.user.create({
         data: {
           name: body.name,
           email: body.email,
-          passwordHash: body.passwordHash,
+          passwordHash: passwordHash,
           role: body.role || null
         }
       })
@@ -30,6 +33,7 @@ const handler = async (req: Request) => {
     }
 
   } else {
+    console.log('Usted no se encuentra autorizado para realizar esta acción')
     return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
   }
 }

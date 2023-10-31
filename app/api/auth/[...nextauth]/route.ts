@@ -55,6 +55,9 @@ export const authOptions = {
       session.session.user.role = session.token.role
       return session.session
     }
+  },
+  pages: {
+    signIn: '/auth/signin',
   }
 } as any
 const handler = NextAuth(authOptions)
