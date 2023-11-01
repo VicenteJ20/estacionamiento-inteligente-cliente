@@ -42,16 +42,45 @@ export const WelcomeSelectAccount = {
   oldPage: '/dashboard/welcome',
   cards: [
     {
-      type: 1,
+      type: true,
       title: 'Cuenta administrativa y dominio',
       description: 'Selecciona esta opción si estás registrando tu negocio por primera vez.',
       ask: 'Esta cuenta es para usuarios que estén registrando su negocio o empresa por primera vez, lo que creará un domino al cual otras personas (colaboradores) podrán unirse como colaboradores, y así poder administrar el negocio o empresa.',
+      nextPage: '/dashboard/welcome/select-account/admin'
     },
     {
-      type: 2,
+      type: false,
       title: 'Cuenta de colaborador y unirse a un dominio',
       description: 'Selecciona esta opción si eres un colaborador/a que está uniéndose a un dominio administrativo.',
       ask: 'Esta cuenta es para colaboradores de una empresa que se están incorporando a un dominio administrativo ya existente, lo que les permitirá tener acceso limitado si el administrador del dominio aprueba su solicitud.',
+      nextPage: '/dashboard/welcome/select-account/collaborator'
     }
   ]
 }
+
+export const WelcomeAdminAccount = {
+  title: 'Ingresa la información de tu empresa o negocio',
+  oldPage: '/dashboard/welcome/select-account',
+  nextPage: '/dashboard',
+}
+
+export const WelcomeCollaboratorAccount = {
+  title: 'Seleccione el dominio al que quiere unirse',
+  oldPage: '/dashboard/welcome/select-account',
+  nextPage: '/dashboard',
+}
+
+export const WelcomeCollaboratorDomains = [
+  {
+    id: 1,
+    name: 'INACAP',
+  },
+  {
+    id: 2,
+    name: 'Parking Carmen',
+  },
+  {
+    id: 3,
+    name: 'Mall Curicó'
+  }
+]
