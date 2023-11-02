@@ -27,6 +27,7 @@ const welcomeHandler = async (req: Request) => {
       await prisma.user.update({
         where: { id: session.user.id },
         data: {
+          role: 0,
           accountType: 1
         }
       })
