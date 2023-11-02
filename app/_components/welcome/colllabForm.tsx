@@ -3,11 +3,24 @@
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { FiArrowRightCircle } from "react-icons/fi"
 import { CollabAccountSchema } from "@/app/_schemas/collabaccount"
-import { WelcomeCollaboratorDomains as wd } from "@/app/_dictionaries/es-CL"
+import { getEnterprises } from "@/app/_lib/welcome/getEnterprises"
+import { useEffect, useState } from "react"
 
 const CollabAccountForm = () => {
+  const [domains, setDomains] = useState([]) as any
+
+  useEffect(() => {
+    async function getDomains() {
+      const enterprises = await getEnterprises()
+      setDomains(enterprises.data)
+    }
+
+    getDomains()
+  }, [])
+
   const handleSubmit = (values: any, { setSubmitting, resetForm }: any) => {
     console.log(values)
+
   }
 
   return (
@@ -28,7 +41,7 @@ const CollabAccountForm = () => {
                 <Field as='select' name='domain' className='border border-gray-300 rounded-md px-3 py-2'>
                   <option value=''>Seleccione una opción</option>
                   {
-                    wd && wd.map((domain) => (
+                    domains && domains.length > 0 && domains.map((domain: any) => (
                       <option key={domain.id} value={domain.id}>{domain.name}</option>
                     ))
                   }
