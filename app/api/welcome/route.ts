@@ -36,6 +36,20 @@ const welcomeHandler = async (req: Request) => {
       console.log(err)
       return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
     }
+  } else {
+    try {
+      await prisma.user.update({
+        where: { id: session.user.id },
+        data: {
+          accountType: 2
+        }
+      })
+
+      return new NextResponse(JSON.stringify({message: 'Usuario creado con éxito'}), {status: 201})
+    } catch (err: any) {
+      console.log(err)
+      return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+    }
   }
 }
 
