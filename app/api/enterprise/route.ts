@@ -23,7 +23,6 @@ const handler = async (req: Request) => {
 
         return new NextResponse(JSON.stringify({ data: res }), { status: 200 })
       } catch (err: any) {
-        console.log(err)
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
       } finally {
         await prisma.$disconnect()

@@ -1,10 +1,12 @@
+'use client'
+
 import { HeaderWelcome } from "@/app/_components/welcome/Header"
 import { WelcomeInfo } from "@/app/_dictionaries/es-CL"
 import Image from "next/image"
 import { FiArrowRightCircle } from "react-icons/fi"
 import Link from "next/link"
-
 const WelcomePage = () => {
+
   const { title, description, imageUrl, nextPage } = WelcomeInfo
   return (
     <article className='flex flex-col gap-10 lg:gap-20 items-center justify-center'>
