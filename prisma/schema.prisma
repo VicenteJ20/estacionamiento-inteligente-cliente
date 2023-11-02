@@ -62,10 +62,12 @@ model User {
   user    UserRole?    @relation(fields: [role], references: [id], onDelete: Cascade)
   account AccountType? @relation(fields: [accountType], references: [id], onDelete: Cascade)
 
-  ParkingPlace ParkingPlace[]
-  Board        Board[]
-  AuthLogs     AuthLogs[]
-  Enterprise   Enterprise[]
+  ParkingPlace          ParkingPlace[]
+  Board                 Board[]
+  AuthLogs              AuthLogs[]
+  Enterprise            Enterprise[]
+  ColaboratorEnterprise ColaboratorEnterprise[]
+  CollaboratorRequests  CollaboratorRequests[]
 }
 
 model Enterprise {
@@ -77,7 +79,32 @@ model Enterprise {
   manager     String
   registredAt DateTime @default(now())
 
-  user User @relation(fields: [manager], references: [id], onDelete: Cascade)
+  user                  User                    @relation(fields: [manager], references: [id], onDelete: Cascade)
+  ColaboratorEnterprise ColaboratorEnterprise[]
+  CollaboratorRequests  CollaboratorRequests[]
+}
+
+model ColaboratorEnterprise {
+  id          String   @id @default(cuid())
+  colaborator String
+  enterprise  String
+  registredAt DateTime @default(now())
+
+  user         User       @relation(fields: [colaborator], references: [id], onDelete: Cascade)
+  enterpriseId Enterprise @relation(fields: [enterprise], references: [id], onDelete: Cascade)
+}
+
+model CollaboratorRequests {
+  id          String   @id @default(cuid())
+  colaborator String
+  enterprise  String
+  registredAt DateTime @default(now())
+  status      Boolean?
+  managedBy   String?
+
+  user         User        @relation(fields: [colaborator], references: [id], onDelete: Cascade)
+  Enterprise   Enterprise? @relation(fields: [enterpriseId], references: [id])
+  enterpriseId String?
 }
 
 model VerificationToken {
