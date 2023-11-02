@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import GithubProvider from 'next-auth/providers/github'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
 import { Adapter } from 'next-auth/adapters'
@@ -44,15 +43,21 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, user, session, trigger}: any) {
-      if (user) token.role = user.role
+      if (user) {
+        token.role = user.role
+        token.sub = user.id
+        token.accountType = user.accountType
+      }
+      
 
       if (trigger === 'update' && session?.name) token.name = session.session.user.name
-
       return token
     },
     async session(session: any) {
       session.session.user.id = session.token.sub
       session.session.user.role = session.token.role
+      session.session.user.accountType = session.token.accountType
+
       return session.session
     }
   },
