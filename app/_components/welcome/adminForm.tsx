@@ -3,10 +3,23 @@
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { AdminAccountSchema } from "@/app/_schemas/adminaccount"
 import { FiArrowRightCircle } from "react-icons/fi"
+import { useDispatch  } from "react-redux"
+import { useRouter } from "next/navigation"
+import { setAddress, setAlias, setCommercialName, setRut } from "@/app/_redux/slices/adminSlice"
 
 const AdminAccountForm = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const handleSubmit = (values: any, { setSubmitting, resetForm }: any) => {
-    console.log(values)
+    const { name, rut, alias, address } = values
+    dispatch(setCommercialName(name))
+    dispatch(setRut(rut))
+    dispatch(setAlias(alias))
+    dispatch(setAddress(address))
+    setSubmitting(false)
+
+    router.push('/dashboard/welcome/select-account/admin/finish')
   }
 
   return (
