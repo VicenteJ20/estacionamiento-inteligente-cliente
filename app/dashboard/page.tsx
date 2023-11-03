@@ -12,7 +12,7 @@ const DashboardHomePage = async () => {
 
   return (
     <div>
-      <Sidebar />
+      <h2>Dashboard Home</h2>
     </div>
   )
 }
