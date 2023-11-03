@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 import { redirect } from "next/navigation"
+import Sidebar from "../_components/dashboard/Sidebar"
 
 
 const DashboardHomePage = async () => {
@@ -11,7 +12,7 @@ const DashboardHomePage = async () => {
 
   return (
     <div>
-      <h1>Dashboard Home</h1>
+      <Sidebar />
     </div>
   )
 }
