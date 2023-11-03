@@ -5,6 +5,7 @@ import { WelcomeSelectAccount } from "@/app/_dictionaries/es-CL"
 import Link from "next/link"
 import { useDispatch } from "react-redux"
 import { setType } from "@/app/_redux/slices/adminSlice"
+import { setType as setTypeCollab } from "@/app/_redux/slices/collabSlice"
 
 const SelectAccount = () => {
   const { title, cards, oldPage } = WelcomeSelectAccount
@@ -13,7 +14,7 @@ const SelectAccount = () => {
   const dispatch = useDispatch()
 
   const handleClick = (target: boolean) => {
-    dispatch(setType(target ? 0 : 1))
+    target ? dispatch(setTypeCollab(target)) : dispatch(setType(target))
   }
 
   return (

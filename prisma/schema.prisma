@@ -101,10 +101,12 @@ model CollaboratorRequests {
   registredAt DateTime @default(now())
   status      Boolean?
   managedBy   String?
+  message     String?
+  pending     Boolean?
 
   user         User        @relation(fields: [colaborator], references: [id], onDelete: Cascade)
-  Enterprise   Enterprise? @relation(fields: [enterpriseId], references: [id])
-  enterpriseId String?
+  Enterprise   Enterprise? @relation(fields: [enterprise], references: [id])
+
 }
 
 model VerificationToken {
