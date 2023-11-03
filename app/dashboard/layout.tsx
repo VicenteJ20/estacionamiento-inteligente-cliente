@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 import { redirect } from "next/navigation"
 import SessionProvider from '@/app/_components/dashboard/SessionProvider'
+import Sidebar from "../_components/dashboard/Sidebar"
 
 const DashboardLayout = async ({
   children
@@ -14,7 +15,11 @@ const DashboardLayout = async ({
 
   return (
     <SessionProvider session={session as any}>
-      {children}
+      <section className="pl-[18rem] min-h-screen w-screen relative"> 
+        <Sidebar /> 
+        {children}
+      </section>
+
     </SessionProvider>
   )
 }
