@@ -37,7 +37,7 @@ const Sidebar = () => {
                                     <LinkSidebar title={"Gestionar áreas"} icon={<FiMap />} href={"/dashboard/areas_personal/"} />
                                 </li>
                                 <li>
-                                    <LinkSidebar title={"Gestionar personal"} icon={<FiUsers />} href={"/dashboard/areas_personal/personal"} />
+                                    <LinkSidebar title={"Gestionar personal"} icon={<FiUsers />} href={"/dashboard/personal"} />
                                 </li>
                                 <li>
                                     <LinkSidebar title={"Historial y logs"} icon={<FiClipboard />} href={"/dashboard/areas_personal/logs"} />
