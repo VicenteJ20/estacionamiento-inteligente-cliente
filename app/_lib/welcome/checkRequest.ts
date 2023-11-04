@@ -14,3 +14,18 @@ export const checkRequest = async (id: string) => {
     return { data: err.message, status: 500 }
   }
 }
+
+export const getCollaborators = async () => {
+  try {
+    const res = await fetch('/api/request', {
+      method: 'GET'
+    })
+
+    const info = await res.json()
+    return { status: res.status, data: info.data }
+    
+  } catch (err: any) {
+    console.log(err)
+    return { status: 500 }
+  }
+}
