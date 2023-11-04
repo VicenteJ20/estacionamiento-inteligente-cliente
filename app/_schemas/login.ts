@@ -1,4 +1,4 @@
-import * as Yup from "Yup"
+import * as Yup from "yup"
 
 export const LoginShema = Yup.object().shape({
   email: Yup.string().email('El correo electrónico ingresado no es válido').required('Debe ingresar un correo electrónico.'),
