@@ -47,6 +47,12 @@ model AccountType {
   User User[]
 }
 
+model UserStatus {
+  id   Int    @id @default(autoincrement())
+  name String
+  User User[]
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -56,6 +62,8 @@ model User {
   role          Int?
   accountType   Int?
   passwordHash  String?
+  status  Int?
+
   accounts      Account[]
   sessions      Session[]
 
@@ -68,6 +76,7 @@ model User {
   Enterprise            Enterprise[]
   ColaboratorEnterprise ColaboratorEnterprise[]
   CollaboratorRequests  CollaboratorRequests[]
+  UserStatus            UserStatus?             @relation(fields: [status], references: [id])
 }
 
 model Enterprise {
@@ -104,9 +113,8 @@ model CollaboratorRequests {
   message     String?
   pending     Boolean?
 
-  user         User        @relation(fields: [colaborator], references: [id], onDelete: Cascade)
-  Enterprise   Enterprise? @relation(fields: [enterprise], references: [id])
-
+  user       User        @relation(fields: [colaborator], references: [id], onDelete: Cascade)
+  Enterprise Enterprise? @relation(fields: [enterprise], references: [id])
 }
 
 model VerificationToken {

@@ -66,7 +66,7 @@ const Sidebar = () => {
             </article>
             <section className='flex flex-col gap-4'>
                 <div className='px-4 py-3 border border-zinc-300 rounded-md flex flex-row gap-2'>
-                    <Image src={session?.data?.user?.image || '/images/user.webp'} width={100} height={100} alt='' className="rounded-full object-center w-12 h-12 border-2 border-zinc-300" />
+                    <Image src={session?.data?.user?.image || '/images/profile.jpg'} width={100} height={100} alt='' className="rounded-full object-center w-12 h-12 border-2 border-zinc-300" />
                     <article className='flex flex-col gap-1'>
                         <h3 className='font-semibold'>{session?.data?.user?.name}</h3>
                         <p title={session?.data?.user?.email} className='text-sm text-zinc-300 max-w-[11rem] overflow-hidden'>{session?.data?.user?.email}</p>
