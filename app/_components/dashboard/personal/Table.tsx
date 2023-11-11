@@ -55,6 +55,7 @@ const TablePersonal = () => {
             isBordered: true, color: 'default' }}
             description={user.email}
             name={user.name}
+            className="gap-4 justify-start"
           >
             {user.email}
           </User>
@@ -98,12 +99,12 @@ const TablePersonal = () => {
   }, []);
 
   return (
-    <Table aria-label="Example table with custom cells">
+    <Table aria-label="Usuarios previamente registrados y aprobados" radius="none" shadow="sm">
       <TableHeader>
-        <TableColumn align="start" key='name'>Colaborador</TableColumn>
-        <TableColumn align="start" key='role'>Rol</TableColumn>
-        <TableColumn align="center" key='status'>Estado</TableColumn>
-        <TableColumn align="center" key='actions'>Acciones</TableColumn>
+        <TableColumn align="start" key='name' className='text-md'>COLABORADOR</TableColumn>
+        <TableColumn align="start" key='role' className='text-md'>ROL</TableColumn>
+        <TableColumn align="center" key='status' className='text-md'>ESTADO</TableColumn>
+        <TableColumn align="center" key='actions' className='text-md'>ACCIONES</TableColumn>
       </TableHeader>
       <TableBody emptyContent={"No hay usuarios registrados"} items={info}>
         {(item: any) => (
