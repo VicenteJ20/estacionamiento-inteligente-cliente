@@ -5,6 +5,7 @@ import { FiHome, FiClipboard, FiMap, FiUsers, FiCheckCircle, FiEye, FiTool, FiMo
 import { LinkSidebar } from "./LinkDashboard"
 import { BrandInfo } from "@/app/_dictionaries/es-CL";
 import Image from "next/image";
+import { User, Button } from "@nextui-org/react";
 
 
 const Sidebar = () => {
@@ -64,15 +65,16 @@ const Sidebar = () => {
                     </ul>
                 </nav>
             </article>
-            <section className='flex flex-col gap-4'>
-                <div className='px-4 py-3 border border-zinc-300 rounded-md flex flex-row gap-2'>
-                    <Image src={session?.data?.user?.image || '/images/user.webp'} width={100} height={100} alt='' className="rounded-full object-center w-12 h-12 border-2 border-zinc-300" />
-                    <article className='flex flex-col gap-1'>
-                        <h3 className='font-semibold'>{session?.data?.user?.name}</h3>
-                        <p title={session?.data?.user?.email} className='text-sm text-zinc-300 max-w-[11rem] overflow-hidden'>{session?.data?.user?.email}</p>
-                    </article>
-                </div>
-                <button onClick={() => signOut()} className='bg-red-700 py-3 px-4 rounded-md font-semibold hover:bg-red-900 transition-all duration-300 ease-in-out'>Cerrar sesión</button>
+            <section  className='flex flex-col gap-4'>
+                <User
+                    avatarProps={{ radius: 'sm', src: session?.data?.user?.image || '/images/profile.jpg' }}
+                    name={session?.data?.user?.name}
+                    description={session?.data?.user?.email}
+                    className='gap-3 justify-start'
+                />
+                <Button color="danger" variant="shadow" onClick={() => signOut()}>
+                    Cerrar sesión
+                </Button>
             </section>
         </aside>
     )

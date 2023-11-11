@@ -19,7 +19,29 @@ const handler = async (req: Request, { params } : any) => {
           where: {
             id: id.toString()
           },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            emailVerified: true,
+            role: true,
+            accountType: true,
+          }
         })
+
+    
+        const accountType = await prisma.accountType.findUnique({
+          where: {
+            id: res?.accountType as any
+          },
+          select: {
+            name: true
+          }
+        })
+
+        if (res) {
+          res.accountType = accountType?.name as any
+        }
 
         return new NextResponse(JSON.stringify({ data: res }), { status: 200 })
       } catch (err: any) {
