@@ -27,7 +27,7 @@ const DashboardLayout = async ({
 
   return (
     <SessionProvider session={session as any}>
-      <section className='pl-[22rem] min-h-screen w-screen relative p-8'> 
+      <section className='pl-[19rem] pr-[3rem] min-h-screen w-screen relative py-8'> 
         <Sidebar /> 
         {children}
       </section>

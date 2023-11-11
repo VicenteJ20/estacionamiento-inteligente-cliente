@@ -14,9 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
 const PersonalHomePage = () => {
   return (
     <>
-      <section className='flex flex-col gap-6 mb-8'>
+      <section className='flex flex-col gap-6 mb-8 w-full'>
         <HeaderDashboard title='Gestión de personal' overtitle={'Dashboard / personal'} />
-        <FiltersPersonal />
       </section>
       <PersonalLayout />
     </>

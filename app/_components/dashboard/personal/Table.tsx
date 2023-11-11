@@ -4,6 +4,7 @@ import { useEffect, useCallback, useState, useRef } from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, ChipProps } from "@nextui-org/react";
 import { FiEdit as EditIcon, FiEye as EyeIcon } from "react-icons/fi";
 import { MdOutlineDeleteOutline as DeleteIcon } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   null: "default",
@@ -21,6 +22,7 @@ const userStatus: any = [
 const TablePersonal = () => {
   const alreadyFetched = useRef(false)
   const [info, setInfo] = useState([]) as any
+  const router = useRouter()
 
   useEffect(() => {
     async function GetAllCollaborators(id: string) {
@@ -75,18 +77,18 @@ const TablePersonal = () => {
         );
       case "actions":
         return (
-          <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
+          <div className="relative flex items-center gap-4 w-full">
+            <Tooltip content="Detalles del usuario">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EyeIcon />
+                <EyeIcon onClick={() => router.push(`/dashboard/personal/${user.id}`)} />
               </span>
             </Tooltip>
-            <Tooltip content="Edit user">
+            <Tooltip content="Editar usuario">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EditIcon />
+                <EditIcon onClick={() => router.push(`/dashboard/personal/${user.id}`)} />
               </span>
             </Tooltip>
-            <Tooltip color="danger" content="Delete user">
+            <Tooltip color="danger" content="Desvincular usuario">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
                 <DeleteIcon />
               </span>
@@ -96,7 +98,7 @@ const TablePersonal = () => {
       default:
         return cellValue;
     }
-  }, []);
+  }, [router]);
 
   return (
     <Table aria-label="Usuarios previamente registrados y aprobados" radius="none" shadow="sm">

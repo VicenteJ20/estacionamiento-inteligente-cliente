@@ -46,6 +46,8 @@ const handler = async (req: Request) => {
     } catch (err: any) {
       console.log(err)
       return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+    } finally {
+      await prismaGet.$disconnect()
     }
     case 'POST':
       const session = await getServerSession(authOptions) as any
