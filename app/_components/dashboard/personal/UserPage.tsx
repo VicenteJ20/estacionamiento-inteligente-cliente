@@ -1,35 +1,35 @@
 'use client'
 
 import { HeaderDashboard } from "@/app/_components/dashboard/Header"
-import { Avatar, Input, Select, SelectItem } from "@nextui-org/react"
-import { useEffect, useState } from "react"
+import { Avatar, Input, Select, SelectItem, useSelect } from "@nextui-org/react"
+import { useEffect } from "react"
+import { getAllRoles } from "@/app/_lib/personal/roles"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { addManyRoles } from "@/app/_redux/slices/rolesSlice"
 
 export const UserPage = (infoUser: any) => {
-  const [roleData, setRoleData] = useState([]) as any
+
+  const roleData = useSelector((state: any) => state.availableRoles.roles)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    async function getAllRoles() {
-      const info = await fetch('/api/roles', {
-        method: 'GET',
-        headers: {
-          contentType: 'application/json'
-        }
-      })
-      const res = await info.json()
-      setRoleData(res.roles)
+    async function handler() {
+      const roles =  await getAllRoles()
+      dispatch(addManyRoles(roles.roles))
     }
 
-    if (roleData.length === 0 || !roleData) {
-      getAllRoles()
+    if (roleData.length === 0) {
+      handler()
     }
-  }, [roleData])
+  }, [dispatch, roleData])
 
   if (infoUser && infoUser.infoUser && infoUser.infoUser.length > 0) {
 
     return (
       <section>
         <div className='flex flex-col gap-8'>
-          <HeaderDashboard overtitle={`Dashboard / personal / info / ${infoUser.infoUser[0].id}`} title={`Perfil del usuario`} description='Cualquier modificación al rol del usuario quedará registrada en los logs del sistema y no podrá ser eliminada.' />
+          <HeaderDashboard overtitle={`Dashboard / personal / info / ${infoUser.infoUser[0].email}`} title={`Perfil del usuario`} description='Cualquier modificación al rol del usuario quedará registrada en los logs del sistema y no podrá ser eliminada.' />
           <article className='flex flex-col gap-4'>
             <Avatar src={infoUser.infoUser[0].image ? infoUser.infoUser[0].image : 'https://i.pravatar.cc/150'} size='lg' radius='none' className='w-40 h-40' isBordered={true} color='default' />
             <form onSubmit={(e: any) => e.preventDefault()} className='flex flex-col gap-6 mt-5 max-w-6xl'>

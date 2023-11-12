@@ -1,4 +1,3 @@
-import { FiltersPersonal } from "@/app/_components/dashboard/FiltersPersonal"
 import { HeaderDashboard } from "@/app/_components/dashboard/Header"
 import { PersonalLayout } from "@/app/_components/dashboard/personal/PersonalLayout"
 import type { Metadata } from "next"

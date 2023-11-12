@@ -36,9 +36,10 @@ model Session {
 }
 
 model UserRole {
-  id   Int    @id
-  name String @unique
-  User User[]
+  id          Int    @id
+  name        String @unique
+  description String? @db.Text
+  User        User[]
 }
 
 model AccountType {
@@ -62,10 +63,10 @@ model User {
   role          Int?
   accountType   Int?
   passwordHash  String?
-  status  Int?
+  status        Int?
 
-  accounts      Account[]
-  sessions      Session[]
+  accounts Account[]
+  sessions Session[]
 
   user    UserRole?    @relation(fields: [role], references: [id], onDelete: Cascade)
   account AccountType? @relation(fields: [accountType], references: [id], onDelete: Cascade)
