@@ -10,5 +10,3 @@ services:
       - MARIADB_DATABASE=auth_db
     ports:
       - "3306:3306"
-    volumes:
-      - "./_data:/data/db"

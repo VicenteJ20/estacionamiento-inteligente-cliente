@@ -7,6 +7,7 @@ import { useState } from "react"
 import { Loading } from "@/app/_components/welcome/loading"
 import Link from "next/link"
 import { FiArrowRightCircle, FiCheckCircle, FiXCircle, FiArrowLeftCircle } from "react-icons/fi"
+import { signOut } from "next-auth/react"
 
 const FinishAdminPage = () => {
   const [loading, setLoading] = useState(false)
@@ -37,7 +38,7 @@ const FinishAdminPage = () => {
                 <>
                   <FiCheckCircle className='text-green-500 text-9xl mx-auto' />
                   <HeaderWelcome title='Todo bien' description='Su empresa se registró con éxito en nuestro sistema, haga click en el botón aquí abajo para ir al Dashboard' />
-                  <Link href='/dashboard' className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 ease-in-out flex flex-row gap-2 items-center justify-center text-lg max-w-fit mx-auto'>Ir al dashboard <FiArrowRightCircle /></Link>
+                  <button onClick={() => signOut()} className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 ease-in-out flex flex-row gap-2 items-center justify-center text-lg max-w-fit mx-auto'>Ir al dashboard <FiArrowRightCircle /></button>
                 </>
               ) : (
                 <>

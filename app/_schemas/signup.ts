@@ -1,4 +1,4 @@
-import * as Yup from "Yup"
+import * as Yup from "yup"
 
 export const SignUpSchema = Yup.object().shape({
   name: Yup.string().required('Debe ingresar un nombre.').min(3, 'El nombre debe tener al menos 3 caracteres.'),

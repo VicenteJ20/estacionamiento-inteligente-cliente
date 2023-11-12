@@ -13,7 +13,7 @@ const WelcomeLayout = async ({
   const { title, icon } = BrandInfo
   return (
     <ReduxProvider>
-      <section className='w-screen min-h-screen bg-blue-500 relative p-8 flex flex-col items-center justify-center'>
+      <section className='w-screen min-h-screen bg-blue-500  p-8 flex flex-col items-center justify-center absolute top-0 left-0 z-20'>
         <header className='flex flex-row gap-4 items-center absolute left-8 top-8'>
           <Image src={icon} alt={title} width={42} height={42} className='invert' />
           <h2 className='font-semibold text-xl text-white'>{title}</h2>

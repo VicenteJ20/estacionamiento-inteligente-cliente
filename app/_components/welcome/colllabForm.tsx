@@ -5,8 +5,13 @@ import { FiArrowRightCircle } from "react-icons/fi"
 import { CollabAccountSchema } from "@/app/_schemas/collabaccount"
 import { getEnterprises } from "@/app/_lib/welcome/getEnterprises"
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useRouter } from "next/navigation"
+import { setEnterpriseId, setEnterpriseName, setMessage, setType } from "@/app/_redux/slices/collabSlice"
 
 const CollabAccountForm = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const [domains, setDomains] = useState([]) as any
 
   useEffect(() => {
@@ -18,9 +23,16 @@ const CollabAccountForm = () => {
     getDomains()
   }, [])
 
-  const handleSubmit = (values: any, { setSubmitting, resetForm }: any) => {
-    console.log(values)
+  const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
+    const { domain, message } = values
+    const selectedItem = domains.find((item: any) => item.id === domain)
+    dispatch(setType(1))
+    dispatch(setEnterpriseId(domain))
+    dispatch(setEnterpriseName(selectedItem.name))
+    dispatch(setMessage(message))
+    setSubmitting(false)
 
+    router.push('/dashboard/welcome/select-account/collaborator/finish')
   }
 
   return (
