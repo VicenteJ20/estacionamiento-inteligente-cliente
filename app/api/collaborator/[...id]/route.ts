@@ -58,4 +58,5 @@ const handler = async (req: Request, { params }: any) => {
 
 export {
   handler as GET,
+  handler as PATCH,
 }
