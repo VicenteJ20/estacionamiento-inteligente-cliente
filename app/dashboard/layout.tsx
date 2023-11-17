@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import SessionProvider from '@/app/_components/dashboard/SessionProvider'
 import Sidebar from "../_components/dashboard/Sidebar"
 import type { Metadata } from "next"
+import { ReduxProvider } from "../_redux/provider"
 
 export const metadata: Metadata = {
   title: {
@@ -23,14 +24,16 @@ const DashboardLayout = async ({
 
   if (!session) return redirect('/auth/signin')
 
-  
+
 
   return (
     <SessionProvider session={session as any}>
-      <section className='pl-[19rem] pr-[3rem] min-h-screen w-screen relative py-8'> 
-        <Sidebar /> 
-        {children}
-      </section>
+      <ReduxProvider>
+        <section className='pl-[19rem] pr-[3rem] min-h-screen w-screen relative py-8'>
+          <Sidebar />
+          {children}
+        </section>
+      </ReduxProvider>
 
     </SessionProvider>
   )

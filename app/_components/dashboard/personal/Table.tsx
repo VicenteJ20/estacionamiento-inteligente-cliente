@@ -53,8 +53,10 @@ const TablePersonal = () => {
       case "name":
         return (
           <User
-            avatarProps={{ radius: "lg", src: !user.image ? 'https://i.pravatar.cc/150' : user.image, 
-            isBordered: true, color: 'default' }}
+            avatarProps={{
+              radius: "lg", src: !user.image ? 'https://i.pravatar.cc/150' : user.image,
+              isBordered: true, color: 'default'
+            }}
             description={user.email}
             name={user.name}
             className="gap-4 justify-start"
@@ -103,10 +105,10 @@ const TablePersonal = () => {
   return (
     <Table aria-label="Usuarios previamente registrados y aprobados" radius="none" shadow="sm">
       <TableHeader>
-        <TableColumn align="start" key='name' className='text-md'>COLABORADOR</TableColumn>
-        <TableColumn align="start" key='role' className='text-md'>ROL</TableColumn>
-        <TableColumn align="center" key='status' className='text-md'>ESTADO</TableColumn>
-        <TableColumn align="center" key='actions' className='text-md'>ACCIONES</TableColumn>
+        <TableColumn align="start" key='name' >COLABORADOR</TableColumn>
+        <TableColumn align="start" key='role' >ROL</TableColumn>
+        <TableColumn align="center" key='status' >ESTADO</TableColumn>
+        <TableColumn align="center" key='actions' >ACCIONES</TableColumn>
       </TableHeader>
       <TableBody emptyContent={"No hay usuarios registrados"} items={info}>
         {(item: any) => (
