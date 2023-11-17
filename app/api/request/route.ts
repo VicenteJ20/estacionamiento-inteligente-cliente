@@ -85,10 +85,61 @@ const handler = async (req: Request) => {
 
     default:
       return new NextResponse(JSON.stringify({ message: 'Método no permitido' }), { status: 405 })
+
+    case 'PATCH':
+      const sessionPatch = await getServerSession(authOptions) as any
+
+      if (!sessionPatch) return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
+
+      const prismaPatch = new PrismaClient()
+
+      const bodyPatch = await req.json()
+      
+      try {
+        // Cambia el rol y status al usuario en la tabla user
+        
+        await prismaPatch.user.update({
+          where: {
+            id: bodyPatch.collaborator
+          },
+          data: {
+            role: 1,
+            status: 1,
+            accountType: 2
+          }
+        })
+
+        // Ingresa un colaborador al registor de colaboradores por empresa
+        await prismaPatch.colaboratorEnterprise.create({
+          data: {
+            colaborator: bodyPatch.collaborator,
+            enterprise: sessionPatch?.user?.enterprise
+          }
+        })
+
+        // Actualiza la petición de colaborador a la nueva empresa aprobandola
+        await prismaPatch.collaboratorRequests.update({
+          where: {
+            colaborator: bodyPatch.collaborator,
+          },
+          data: {
+            status: true,
+            managedBy: sessionPatch?.user?.id,
+            pending: false
+          }
+        })
+
+
+        return new NextResponse(JSON.stringify({message: 'usuario actualizado con éxito'}), {status: 200})
+      } catch (err: any) {
+        console.log(err)
+        return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+      }
   }
 }
 
 export {
   handler as GET,
-  handler as POST
+  handler as POST,
+  handler as PATCH,
 }

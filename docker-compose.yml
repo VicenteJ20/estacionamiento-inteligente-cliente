@@ -5,7 +5,6 @@ services:
     image: mariadb:latest
     container_name: oauth_db
     environment:
-      - MARIADB_USER=superAdmin
       - MARIADB_ROOT_PASSWORD=estacionamiento2023
       - MARIADB_DATABASE=auth_db
     ports:

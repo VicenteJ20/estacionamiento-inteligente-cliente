@@ -94,7 +94,7 @@ export const UserPage = (infoUser: any) => {
                 <SelectItem key="Administrativa" value="Administrativa">Administrativa</SelectItem>
               </Select>
               <Select
-
+                isDisabled={infoUser.infoUser[0].status === 2 ? true : false}
                 onChange={(e: any) => setActualRole(e.target.value)}
                 label='Rol'
                 placeholder="Seleccione una opción"
@@ -110,10 +110,16 @@ export const UserPage = (infoUser: any) => {
                 }
               </Select>
               {
-                actualRole !== '' && actualRole !== roleData[infoUser.infoUser[0].role].name && (
-                  <Button onPress={onOpen} color="primary" variant="shadow">
-                    Confirmar
-                  </Button>
+                infoUser.infoUser[0].status === 2 && (
+                  <>
+                    {
+                      actualRole !== '' && actualRole !== roleData[infoUser.infoUser[0].role].name && (
+                        <Button onPress={onOpen} color="primary" variant="shadow">
+                          Confirmar
+                        </Button>
+                      )
+                    }
+                  </>
                 )
               }
               <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
