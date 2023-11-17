@@ -47,6 +47,7 @@ export const authOptions = {
         token.role = user.role
         token.sub = user.id
         token.accountType = user.accountType
+        token.enterprise = user.enterprise
       }
       
 
@@ -54,9 +55,19 @@ export const authOptions = {
       return token
     },
     async session(session: any) {
+      const enterpriseID = await prisma.enterprise.findFirst({
+        where: {
+          manager: session.token.sub
+        },
+        select: {
+          id: true
+        }
+      })
+
       session.session.user.id = session.token.sub
       session.session.user.role = session.token.role
       session.session.user.accountType = session.token.accountType
+      session.session.user.enterprise = enterpriseID?.id
 
       return session.session
     }

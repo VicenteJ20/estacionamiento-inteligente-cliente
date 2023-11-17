@@ -66,7 +66,6 @@ const handler = async (req: Request, { params }: any) => {
         //const authId = session?.user?.id as any
         const body = await req.json()
         const { userId, newrole } = body
-        console.log(req.body)
         const res = await prisma1.user.update({
           where: {
             id: userId
@@ -76,8 +75,31 @@ const handler = async (req: Request, { params }: any) => {
           }
         })
 
-        return new NextResponse(JSON.stringify({ data: res }), { status: 200})
+        return new NextResponse(JSON.stringify({ data: res }), { status: 200 })
 
+      } catch (err: any) {
+        console.log(err)
+        return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+      }
+
+    case 'DELETE':
+
+      const prismaDelete = new PrismaClient()
+
+      try {
+        const body = await req.json()
+        const { userId } = body
+
+        await prismaDelete.user.update({
+          where: {
+            id: userId
+          },
+          data: {
+            status: 2
+          }
+        })
+
+        return new NextResponse(JSON.stringify({ data: 'El usuario fue desactivado con éxito' }), { status: 200 })
       } catch (err: any) {
         console.log(err)
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
@@ -88,4 +110,5 @@ const handler = async (req: Request, { params }: any) => {
 export {
   handler as GET,
   handler as PATCH,
+  handler as DELETE
 }

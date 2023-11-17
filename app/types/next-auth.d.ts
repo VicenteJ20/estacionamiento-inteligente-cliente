@@ -10,6 +10,7 @@ declare module 'next-auth' {
       id: string,
       role: number,
       accountType: number
+      enterprise: string
     }
   }
 }

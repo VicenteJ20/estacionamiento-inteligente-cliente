@@ -106,7 +106,7 @@ model ColaboratorEnterprise {
 
 model CollaboratorRequests {
   id          String   @id @default(cuid())
-  colaborator String
+  colaborator String   @unique
   enterprise  String
   registredAt DateTime @default(now())
   status      Boolean?
