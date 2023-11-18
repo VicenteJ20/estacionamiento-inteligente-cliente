@@ -6,6 +6,8 @@ import { askForAccess } from "@/app/_lib/welcome/createAccount"
 import { useState } from "react"
 import { Loading } from "@/app/_components/welcome/loading"
 import { FiCheckCircle, FiXCircle } from "react-icons/fi"
+import { Button } from "@nextui-org/react"
+import { signOut } from "next-auth/react"
 
 const FinishColabPage = () => {
   const [loading, setLoading] = useState(false)
@@ -25,6 +27,10 @@ const FinishColabPage = () => {
 
   }
 
+  const handleRedirect = () => {
+    signOut()
+  }
+
   return (
     <article className='flex flex-col gap-10 lg:gap-20  justify-center relative'>
       <Loading loading={loading} />
@@ -36,11 +42,13 @@ const FinishColabPage = () => {
                 <>
                   <FiCheckCircle className='text-green-500 text-9xl mx-auto' />
                   <HeaderWelcome title='Todo bien' description='Se ha enviado una solicitud al administrador de la empresa, debe esperar su aprobación para iniciar sesión en su cuenta.' />
+                  <Button onClick={handleRedirect} variant='shadow' color='primary'>Volver al inicio</Button>
                 </>
               ) : (
                 <>
                   <FiXCircle className='text-red-500 text-9xl mx-auto' />
                   <HeaderWelcome title='Ocurrió un error' description="Ocurrió un error de nuestra parte, por favor intente registrar su empresa más tarde." />
+                  <Button onClick={handleRedirect} variant='shadow' color='danger'>Volver al inicio</Button>
                 </>
               )
             }

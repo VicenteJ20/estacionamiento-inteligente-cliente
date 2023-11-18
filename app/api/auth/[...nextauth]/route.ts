@@ -48,6 +48,7 @@ export const authOptions = {
         token.sub = user.id
         token.accountType = user.accountType
         token.enterprise = user.enterprise
+        token.status = user.status
       }
       
 
@@ -68,6 +69,7 @@ export const authOptions = {
       session.session.user.role = session.token.role
       session.session.user.accountType = session.token.accountType
       session.session.user.enterprise = enterpriseID?.id
+      session.session.user.status = session.token.status
 
       return session.session
     }
