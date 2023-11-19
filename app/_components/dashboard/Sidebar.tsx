@@ -35,13 +35,16 @@ const Sidebar = () => {
                             <h3 className="font-semibold mb-4">ÁREAS Y PERSONAL</h3>
                             <ul>
                                 <li>
-                                    <LinkSidebar title={"Gestionar áreas"} icon={<FiMap />} href={"/dashboard/areas_personal/"} />
+                                    <LinkSidebar title={"Gestionar lugares"} icon={<FiMap />} href={"/dashboard/parking-place"} />
+                                </li>
+                                <li>
+                                    <LinkSidebar title={"Gestionar áreas"} icon={<FiMap />} href={"/dashboard/areas"} />
                                 </li>
                                 <li>
                                     <LinkSidebar title={"Gestionar personal"} icon={<FiUsers />} href={"/dashboard/personal"} />
                                 </li>
                                 <li>
-                                    <LinkSidebar title={"Historial y logs"} icon={<FiClipboard />} href={"/dashboard/areas_personal/logs"} />
+                                    <LinkSidebar title={"Historial y logs"} icon={<FiClipboard />} href={"/dashboard/logs"} />
                                 </li>
                             </ul>
                         </li>
@@ -65,7 +68,7 @@ const Sidebar = () => {
                     </ul>
                 </nav>
             </article>
-            <section  className='flex flex-col gap-4'>
+            <section className='flex flex-col gap-4'>
                 <User
                     avatarProps={{ radius: 'sm', src: session?.data?.user?.image || '/images/profile.jpg' }}
                     name={session?.data?.user?.name}
