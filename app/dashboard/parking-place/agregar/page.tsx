@@ -71,7 +71,7 @@ const AddParkingPlacePage = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
   return (
-    <section>
+    <section className='max-w-full'>
       <HeaderDashboard title='Agregar nuevo lugar de estacionamiento' overtitle='Dashboard / parking-place / agregar' />
       <div className={`h-96 my-8 relative ${isOpen ? 'z-0' : ''}`}>
         <ParkingPlaceMap />
