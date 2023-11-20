@@ -5,6 +5,7 @@ import adminWelcomeReducer from './slices/adminSlice'
 import collabWelcomeReducer from './slices/collabSlice'
 import availableRolesReducer from './slices/rolesSlice'
 import areasReducer from './slices/areasSlice'
+import selectedParkingReducer from './slices/selectedParkingSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     collabWelcome: collabWelcomeReducer,
     availableRoles: availableRolesReducer,
     areasReducer: areasReducer,
+    parkingPlace: selectedParkingReducer,
   }
 })
 

@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react'
 const HighlightCard = () => {
 
   useEffect(() => {
-
+    async function getAvailableAreas() {
+      const response = await fetch('/api/areas')
+      const data = await response.json()
+      console.log(data)
+    }
   }, [])
 
   return (
