@@ -16,6 +16,7 @@ const ParkingPlaceMap = () => {
   const [markers, setMarkers] = useState([]) as any;
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
+  
   const [show, setShow] = useState(false)
 
   const addMarker = (e: any) => {
@@ -26,7 +27,6 @@ const ParkingPlaceMap = () => {
   useEffect(() => {
     async function GetLocation() {
       navigator.geolocation.getCurrentPosition((position: any) => {
-        console.log(position)
         setLatitude(position.coords.latitude)
         setLongitude(position.coords.longitude)
         setShow(true)
@@ -37,11 +37,12 @@ const ParkingPlaceMap = () => {
 
     GetLocation()
   }, [])
+  
   return (
     <>
       {
         show ? (
-          <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
+          <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }} className='border border-zinc-500'>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />

@@ -34,21 +34,25 @@ const LayoutParking = () => {
     const cellValue = place.id
 
     switch (columnKey) {
+      case 'Alias':
+        return (
+          <p>{place.alias}</p>
+        )
       case 'Ciudad':
         return (
-          <p>{place.Ciudad}</p>
+          <p>{place.ciudad}</p>
         )
       case 'Comuna':
         return (
-          <p>{place.Comuna}</p>
+          <p>{place.comuna}</p>
         )
       case 'Region':
         return (
-          <p>{place.Region}</p>
+          <p>{place.region}</p>
         )
       case 'Manager':
         return (
-          <p>{place.Manager}</p>
+          <p>{place.manager}</p>
         )
       case "Acciones":
         return (
@@ -74,6 +78,9 @@ const LayoutParking = () => {
     <section className='grid grid-cols-6 gap-16 w-full my-8'>
       <Table aria-label='Registro de lugares de estacionamiento' radius='none' shadow='sm' className="min-w-fit col-span-4">
         <TableHeader>
+          <TableColumn align='start' key='Alias'>
+            Alias
+          </TableColumn>
           <TableColumn align='start' key='Ciudad'>
             Ciudad
           </TableColumn>
