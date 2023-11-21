@@ -90,6 +90,11 @@ const ParkingPlaceByIdPage = ({ params }: any) => {
                   >
                     {({ isSubmitting, values }) => (
                       <Form className='grid grid-cols-2 gap-4 my-4'>
+                        <div className='flex flex-col gap-2 col-span-2'>
+                          <label htmlFor='alias' className='text-zinc-800 font-medium'>Alias</label>
+                          <Field type='text' id='alias' name='alias' className='border border-zinc-300 py-2 px-4 outline-none bg-zinc-100' placeholder='Ej: Sede curicó' />
+                          <span className='text-red-600'><ErrorMessage name='alias' /></span>
+                        </div>
                         <div className='flex flex-col gap-2'>
                           <label htmlFor='region' className='text-zinc-800 font-medium'>Región</label>
                           <Field type='text' id='region' name='region' className='border border-zinc-300 py-2 px-4 outline-none bg-zinc-100' placeholder='Ej: Maule' />
