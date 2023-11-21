@@ -21,7 +21,7 @@ const AreasSlice = createSlice({
     addSingleArea: (state, action) => {
       state.areas.push(action.payload)
     },
-    addManyRoles: (state, action) => {
+    addManyAreas: (state, action) => {
       state.areas = action.payload
     },
     updateArea: (state, action) => {
@@ -29,7 +29,7 @@ const AreasSlice = createSlice({
       item.id === action.payload.id)
       state.areas[index] = action.payload
     },
-    deleteRole: (state, action) => {
+    deleteArea: (state, action) => {
       const index = state.areas.findIndex((item: any) => 
       item.id === action.payload.id)
       state.areas.splice(index, 1)
@@ -37,6 +37,6 @@ const AreasSlice = createSlice({
   }
 })
 
-export const { readAreas, addSingleArea, addManyRoles, updateArea, deleteRole } = AreasSlice.actions
+export const { readAreas, addSingleArea, addManyAreas, updateArea, deleteArea } = AreasSlice.actions
 
 export default AreasSlice.reducer

@@ -9,33 +9,33 @@ const handler = async (req: Request) => {
 
   const session = await getServerSession(authOptions) as any
 
-  if (!session) return new NextResponse(JSON.stringify({ message: 'No se encuentra autorizado para realizar esta acción'}), {status: 401})
+  if (!session) return new NextResponse(JSON.stringify({ message: 'No se encuentra autorizado para realizar esta acción' }), { status: 401 })
   switch (method) {
-    case 'GET':
-      const prismaGet = new PrismaClient()
+    case 'POST':
+      const prismaPost = new PrismaClient()
+
+      const body = await req.json()
+      if (!body) return new NextResponse(JSON.stringify({ message: 'Bad request' }), { status: 400 })
 
       try {
-        const res = await prismaGet.area.findMany({
-          where: {
-            parkingPlace: session.enterpriseId
-          },
-          select: {
-            id: true,
-            areaName: true,
-            parkingPlace: true,
-            creador: true
+        await prismaPost.area.create({
+          data: {
+            ...body,
+            creador: session.user.id as string,
           }
         })
 
-        return new NextResponse(JSON.stringify({ data: res }), { status: 200 })
+        return new NextResponse(JSON.stringify({ data: 'Area creada con éxito' }), { status: 201 })
       } catch (err: any) {
-        return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+        console.log(err)
+        return new NextResponse(JSON.stringify({ message: err }), { status: 500 })
       } finally {
-        await prismaGet.$disconnect()
+        await prismaPost.$disconnect()
       }
   }
 }
 
 export {
-  handler as GET
+  handler as GET,
+  handler as POST
 }

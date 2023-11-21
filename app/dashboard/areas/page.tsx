@@ -1,6 +1,6 @@
 import { HeaderDashboard } from "@/app/_components/dashboard/Header"
-import HighlightCard from "@/app/_components/dashboard/areas/HighlightCard"
 import { ParkingPlaceSelector } from "@/app/_components/dashboard/areas/ParkingPlaceSelector"
+import { DynamicLayoutArea } from "@/app/_components/dashboard/areas/DynamicLayoutArea"
 
 const AreasHomePage = () => {
   return (
@@ -9,7 +9,7 @@ const AreasHomePage = () => {
         <HeaderDashboard title='Gestionar áreas' overtitle="Dashboard / areas" />
         <ParkingPlaceSelector />
       </section>
-      <HighlightCard />
+      <DynamicLayoutArea />
     </section>
   )
 }
