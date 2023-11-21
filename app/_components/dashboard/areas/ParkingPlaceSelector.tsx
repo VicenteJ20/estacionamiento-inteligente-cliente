@@ -30,6 +30,7 @@ const ParkingPlaceSelector = () => {
 
         dispatch(setId(data.data[0].id))
         dispatch(setAlias(data.data[0].alias))
+        alreadyFetched.current = true
 
       } catch (err: any) {
         console.log(err)
@@ -42,6 +43,12 @@ const ParkingPlaceSelector = () => {
 
   }, [selectedParking, dispatch])
 
+  const handleChange = (e: any) => {
+    const selectedParking = parkingPlace.find((place: any) => place.id === e.target.value)
+    dispatch(setId(selectedParking.id))
+    dispatch(setAlias(selectedParking.alias))
+  }
+
   if (parkingPlace.length > 0) {
     return (
       <Select
@@ -49,6 +56,7 @@ const ParkingPlaceSelector = () => {
         label='Lugar de estacionamiento'
         className='max-w-xs'
         selectorIcon={<TbSelector />}
+        onChange={handleChange}
         defaultSelectedKeys={[selectedParking.id]}
       >
         {

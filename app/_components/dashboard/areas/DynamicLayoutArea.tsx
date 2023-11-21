@@ -79,9 +79,9 @@ const DynamicLayoutArea = () => {
                 <TableRow key={index}>
                   <TableCell key='nombre' className='font-semibold'>{area.areaName}</TableCell>
                   <TableCell key='descripcion' className='max-w-[28rem] overflow-x-auto whitespace-nowrap overflow-hidden'>{area.areaDescription}</TableCell>
-                  <TableCell key='capacidad'>{area.capacity}</TableCell>
+                  <TableCell key='capacidad' align='center'>{area.capacity}</TableCell>
                   <TableCell key='actions' className='flex flex-row gap-2 flex-nowrap items-center'>
-                    <Button size='sm' variant='ghost' color='default'>Editar</Button>
+                    <Button onClick={() => router.push(`/dashboard/areas/${area.id}`)} size='sm' variant='ghost' color='default'>Editar</Button>
                     <Button size='sm' variant='ghost' color='danger'>Eliminar</Button>
                   </TableCell>
                 </TableRow>
