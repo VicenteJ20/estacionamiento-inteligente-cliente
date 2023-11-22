@@ -4,10 +4,13 @@ import { Card, CardBody, CardHeader, Button } from "@nextui-org/react"
 import { FiEdit, FiUser } from "react-icons/fi"
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
+import { useRouter } from "next/navigation"
 
 const HighlightCard = () => {
   const [availableAreas, setAvailableAreas] = useState([]) as any
   const areasRedux = useSelector((state: any) => state.areasReducer)
+
+  const router = useRouter()
 
   useEffect(() => {
     setAvailableAreas(areasRedux.areas)
@@ -23,7 +26,7 @@ const HighlightCard = () => {
                 <li><FiUser className='text-lg' /></li>
                 <li className='whitespace-nowrap'>{area.areaName}</li>
               </ul>
-              <Button isIconOnly variant='ghost' aria-label='edit icon'>
+              <Button isIconOnly variant='ghost' aria-label='edit icon' onClick={() => router.push(`/dashboard/areas/${area.id}`)}>
                 <FiEdit />
               </Button>
             </CardHeader>

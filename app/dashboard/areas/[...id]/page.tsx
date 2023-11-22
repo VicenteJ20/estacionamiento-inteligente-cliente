@@ -4,11 +4,13 @@ import { NotFoundItem } from "@/app/_components/dashboard/404"
 import { HeaderDashboard } from "@/app/_components/dashboard/Header"
 import { useRef, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Spinner, Button } from "@nextui-org/react"
+import { Spinner, Button, Modal, ModalHeader, ModalBody, ModalFooter, useDisclosure, ModalContent } from "@nextui-org/react"
 import { Form, Formik, Field, ErrorMessage } from "formik"
 import { areasSchema } from "@/app/_schemas/area"
 
 const EditAreaPage = ({ params }: any) => {
+
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
 
   const [data, setData] = useState([]) as any
   const [loading, setLoading] = useState(true)
@@ -45,6 +47,7 @@ const EditAreaPage = ({ params }: any) => {
   }, [params])
 
   const handleSubmit = async (values: any, { isSubmitting, resetForm }: any) => {
+    onOpen()
     try {
       const res = await fetch(`/api/areas/${params.id}`, {
         method: 'PATCH',
@@ -54,7 +57,10 @@ const EditAreaPage = ({ params }: any) => {
         body: JSON.stringify(values)
       })
 
-      console.log(res)
+
+      setStatusFetch(res.status)
+
+      isSubmitting = false
     } catch (err: any) {
       console.log(err)
     }
@@ -78,7 +84,7 @@ const EditAreaPage = ({ params }: any) => {
                 <NotFoundItem title='No se ha encontrado esta área' description='Revise el identificador que está buscando o póngase en contacto con su administrador' redirect='/dashboard/areas' />
               ) : (
                 <>
-                  <HeaderDashboard title='Editar área' overtitle='Dashboard / areas / singlearea / ${data.id}' description='Aquí puede editar los datos references del área seleccionada. Las acciones realizadas quedarán en el registro.' />
+                  <HeaderDashboard title='Editar área' overtitle={`Dashboard / areas / singlearea / ${data[0].id}`} description='Aquí puede editar los datos references del área seleccionada. Las acciones realizadas quedarán en el registro.' />
                   <Formik
                     initialValues={data[0]}
                     onSubmit={handleSubmit}
@@ -102,9 +108,45 @@ const EditAreaPage = ({ params }: any) => {
                       </Form>
                     )}
                   </Formik>
+
                 </>
               )
             }
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} className='z-40'>
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    {
+                      statusFetch === 0 ? (
+                        <>
+                          <ModalHeader className="flex flex-col gap-1">Espere...</ModalHeader>
+                          <ModalBody>
+                            <Spinner color='primary' />
+                            <p>Estamos procesando su solicitud, espere un momento.</p>
+                          </ModalBody>
+                          <ModalFooter></ModalFooter>
+                        </>
+                      ) : (
+                        <>
+                          <ModalHeader className="flex flex-col gap-1">{statusFetch === 200 ? 'Proceso exitoso' : statusFetch === 400 ? 'Ha ocurrido un error' : 'Ocurrió un error de nuestra parte'}</ModalHeader>
+                          <ModalBody>
+                            <p>{statusFetch === 200 ?
+                              'Se ha actualizado el área con éxtio, ahora podrá visualizarlo en la lista de áreas y asignar boards a esta ubicación.'
+                              : statusFetch === 400 ?
+                                'Ha ocurrido un error'
+                                : 'Ocurrió un error de nuestra parte'}</p>
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button onClick={() => router.push('/dashboard/areas')} variant='ghost' color='default' radius='none'>volver al menú</Button>
+                            <Button onClick={() => router.push('/dashboard')} variant='ghost' color='primary' radius='none'>Ir al dashboard</Button>
+                          </ModalFooter>
+                        </>
+                      )
+                    }
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
           </>
         )
       }
