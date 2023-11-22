@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardBody, CardHeader } from "@nextui-org/react"
+import { Card, CardBody, CardHeader, Button } from "@nextui-org/react"
 import { FiEdit, FiUser } from "react-icons/fi"
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
@@ -21,9 +21,11 @@ const HighlightCard = () => {
             <CardHeader className='flex flex-row gap-10 justify-between items-center'>
               <ul className='text-base font-semibold text-zinc-800 flex flex-row gap-2 items-center'>
                 <li><FiUser className='text-lg' /></li>
-                <li>{area.areaName}</li>
+                <li className='whitespace-nowrap'>{area.areaName}</li>
               </ul>
-              <FiEdit />
+              <Button isIconOnly variant='ghost' aria-label='edit icon'>
+                <FiEdit />
+              </Button>
             </CardHeader>
             <CardBody className='grid grid-cols-2 gap-2'>
               <div>

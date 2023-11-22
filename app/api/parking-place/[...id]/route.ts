@@ -7,6 +7,9 @@ const handler = async (req: Request, {params}: any) => {
   const method = req.method
 
   const session = await getServerSession(authOptions)
+
+  if (!session) return new NextResponse(JSON.stringify({ message: 'UNAUTHORIZED' }), { status: 401 })
+
   switch (method) {
     case 'GET':
       const prismaGet = new PrismaClient()
