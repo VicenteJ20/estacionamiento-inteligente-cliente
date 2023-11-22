@@ -44,9 +44,40 @@ const handler = async (req: Request, { params }: any) => {
       } finally {
         await prismaGet.$disconnect()
       }
+
+    case 'PATCH':
+      
+      const body = await req.json()
+
+      if (!body) return new NextResponse(JSON.stringify({ message: 'BAD REQUEST' }), { status: 400 })
+
+      const idPatch = params.id as any
+
+      if (!idPatch) return new NextResponse(JSON.stringify({ message: 'BAD REQUEST' }), { status: 400 })
+
+      const prismaPatch = new PrismaClient()
+
+      try {
+        const res = await prismaPatch.area.update({
+          where: {
+            id: idPatch.toString()
+          },
+          data: {
+            ...body
+          }
+        })
+        
+        return new NextResponse(JSON.stringify({ message: 'Area actualizada correctamente' }), { status: 200 })
+      } catch (err: any) {
+        console.log(err)
+        return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+      } finally {
+        await prismaPatch.$disconnect()
+      }
   }
 }
 
 export {
-  handler as GET
+  handler as GET,
+  handler as PATCH,
 }

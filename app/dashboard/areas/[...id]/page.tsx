@@ -45,7 +45,19 @@ const EditAreaPage = ({ params }: any) => {
   }, [params])
 
   const handleSubmit = async (values: any, { isSubmitting, resetForm }: any) => {
-    console.log(values)
+    try {
+      const res = await fetch(`/api/areas/${params.id}`, {
+        method: 'PATCH',
+        headers: {
+          contentType: 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+
+      console.log(res)
+    } catch (err: any) {
+      console.log(err)
+    }
   }
 
   return (
