@@ -1,7 +1,7 @@
 'use client'
 import React from "react"
 import { signOut, useSession } from "next-auth/react"
-import { FiHome, FiClipboard, FiMap, FiUsers, FiCheckCircle, FiEye, FiTool, FiMoreVertical } from "react-icons/fi";
+import { FiHome, FiClipboard, FiMap, FiUsers, FiCheckCircle, FiEye, FiTool, FiCpu, FiLayers} from "react-icons/fi";
 import { LinkSidebar } from "./LinkDashboard"
 import { BrandInfo } from "@/app/_dictionaries/es-CL";
 import Image from "next/image";
@@ -38,13 +38,13 @@ const Sidebar = () => {
                                     <LinkSidebar title={"Gestionar lugares"} icon={<FiMap />} href={"/dashboard/parking-place"} />
                                 </li>
                                 <li>
-                                    <LinkSidebar title={"Gestionar áreas"} icon={<FiMap />} href={"/dashboard/areas"} />
+                                    <LinkSidebar title={"Gestionar áreas"} icon={<FiLayers />} href={"/dashboard/areas"} />
                                 </li>
                                 <li>
                                     <LinkSidebar title={"Gestionar personal"} icon={<FiUsers />} href={"/dashboard/personal"} />
                                 </li>
                                 <li>
-                                    <LinkSidebar title={"Historial y logs"} icon={<FiClipboard />} href={"/dashboard/logs"} />
+                                    <LinkSidebar title={'Boards'} icon={<FiCpu />} href={"/dashboard/boards"} />
                                 </li>
                             </ul>
                         </li>
