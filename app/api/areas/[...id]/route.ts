@@ -15,6 +15,8 @@ const handler = async (req: Request, { params }: any) => {
       const prismaGet = new PrismaClient()
       const id = params.id as any
 
+      if (!id) return new NextResponse(JSON.stringify({ message: 'BAD REQUEST' }), { status: 400 })
+
       try {
         const res = await prismaGet.area.findMany({
           where: {

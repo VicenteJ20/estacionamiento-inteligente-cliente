@@ -58,6 +58,7 @@ const ParkingPlaceSelector = () => {
         selectorIcon={<TbSelector />}
         onChange={handleChange}
         defaultSelectedKeys={[selectedParking.id]}
+        radius='none'
       >
         {
           parkingPlace.length > 0 && parkingPlace.map((place: any) => (
