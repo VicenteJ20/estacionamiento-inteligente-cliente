@@ -37,18 +37,22 @@ const SelectArea = () => {
       }
     }
 
-    if (currentParking.id !== '') {
+    if (currentParking.id !== '' && currentParking !== undefined ) {
       GetAreaById()
     }
-  }, [selectedArea, dispatch, currentParking])
+  }, [dispatch, currentParking]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e: any) => {
     const selectedArea = areas.find((area: any) => area.id === e.target.value)
-    dispatch(setId(selectedArea.id))
-    dispatch(setName(selectedArea.alias))
+    
+    if (selectedArea) {
+      dispatch(setId(selectedArea.id))
+      dispatch(setName(selectedArea.areaName))
+      setOldArea(selectedArea.id)
+    }
   }
 
-  if (oldArea === selectedArea.id && areas.length > 0 ) {
+  if (areas.length > 0 ) {
     return (
       <div className='flex flex-col gap-4'>
         <Select
@@ -56,9 +60,10 @@ const SelectArea = () => {
           labelPlacement='outside'
           label='Seleccione un área'
           placeholder='Seleccione un área'
-          className='w-full'
+          className='max-w-xs'
           onChange={handleChange}
           defaultSelectedKeys={[selectedArea.id]}
+          value={selectedArea.id}
         >
           {
             areas.length > 0 && areas.map((area: any) => (

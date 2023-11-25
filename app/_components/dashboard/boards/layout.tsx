@@ -6,15 +6,17 @@ import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { SelectArea } from "./SelectArea"
 import { ParkingPlaceSelector } from "../areas/ParkingPlaceSelector"
+import { useSelector } from "react-redux"
 
 const LayoutBoards = () => {
   const router = useRouter()
   const [info, setInfo] = useState([]) as any
+  const currentArea = useSelector((state: any) => state.selectedArea)
 
   useEffect(() => {
-    async function GetParkingPlaces() {
+    async function GetBoardsByArea() {
       try {
-        const res = await fetch('/api/many-boards?id={areaId}', {
+        const res = await fetch(`/api/boards?areaId=${currentArea.id}`, {
           method: 'GET',
           headers: {
             contentType: 'application/json'
@@ -32,31 +34,30 @@ const LayoutBoards = () => {
       }
     }
 
-    //GetParkingPlaces()
-  }, [])
+    if (currentArea.id !== '' && currentArea.id !== undefined) {
+      GetBoardsByArea()
+    }
+  }, [currentArea])
+
   const renderCell = useCallback((board: any, columnKey: React.Key) => {
     const cellValue = board.id
 
     switch (columnKey) {
       case 'Modelo':
         return (
-          <p>{board.alias}</p>
+          <p>{board.model}</p>
         )
       case 'Marca':
         return (
-          <p>{board.ciudad}</p>
+          <p>{board.brand}</p>
         )
       case 'Serial Number':
         return (
-          <p>{board.comuna}</p>
+          <p>{board.serialNumber}</p>
         )
       case 'Area':
         return (
-          <p>{board.region}</p>
-        )
-      case 'Agregado por':
-        return (
-          <p>{board.manager}</p>
+          <p>{board.area}</p>
         )
       case "Acciones":
         return (
@@ -80,22 +81,19 @@ const LayoutBoards = () => {
 
   return (
     <section className='grid grid-cols-6 gap-16 w-full my-8'>
-      <Table aria-label='Registro de lugares de estacionamiento' radius='none' shadow='sm' className="min-w-fit col-span-4">
+      <Table aria-label='Registro de boards' radius='none' shadow='sm' className="min-w-fit col-span-4">
         <TableHeader>
-          <TableColumn align='start' key='Alias'>
-            Alias
+          <TableColumn align='start' key='Modelo'>
+            Modelo
           </TableColumn>
-          <TableColumn align='start' key='Ciudad'>
-            Ciudad
+          <TableColumn align='start' key='Marca'>
+            Marca
           </TableColumn>
-          <TableColumn align='start' key='Comuna'>
-            Comuna
+          <TableColumn align='start' key='serialNumber'>
+            Serial Number
           </TableColumn>
-          <TableColumn align='start' key='Region'>
-            Región
-          </TableColumn>
-          <TableColumn align='start' key='Manager'>
-            Manager
+          <TableColumn align='start' key='Area'>
+            Área
           </TableColumn>
           <TableColumn align='start' key='Acciones'>
             Acciones
@@ -118,7 +116,7 @@ const LayoutBoards = () => {
         </div>
         <div className='flex flex-col gap-4'>
           <h2 className='text-2xl font-bold text-gray-700'>Acciones de utilidad:</h2>
-          <Button onClick={() => router.push('/dashboard/parking-place/agregar')} variant='shadow' color='secondary' className='text-white w-full text-lg' radius='none'>Agregar placa</Button>
+          <Button onClick={() => router.push('/dashboard/boards/agregar')} variant='shadow' color='secondary' className='text-white w-full text-lg' radius='none'>Agregar placa</Button>
         </div>
       </div>
     </section>

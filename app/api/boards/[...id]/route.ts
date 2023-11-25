@@ -17,6 +17,8 @@ const handler = async (req: Request, { params }: any) => {
 
       const id = params.id
 
+      if (!id) return new NextResponse(JSON.stringify({ message: 'Not found' }), { status: 404 })
+
       const boards = await prismaGet.board.findMany({
         where: {
           area: id.toString()
