@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  auth_db:
+  database:
     image: mariadb:latest
     container_name: oauth_db
     environment:
