@@ -28,7 +28,6 @@ const LayoutBoards = () => {
 
           setInfo(resData.data)
         }
-        console.log(resData.data)
       } catch (err: any) {
         console.log(err)
       }
@@ -41,7 +40,6 @@ const LayoutBoards = () => {
 
   const renderCell = useCallback((board: any, columnKey: React.Key) => {
     const cellValue = board.id
-
     switch (columnKey) {
       case 'Modelo':
         return (
@@ -51,13 +49,13 @@ const LayoutBoards = () => {
         return (
           <p>{board.brand}</p>
         )
-      case 'Serial Number':
+      case 'serialNumber':
         return (
           <p>{board.serialNumber}</p>
         )
       case 'Area':
         return (
-          <p>{board.area}</p>
+          <p>{board.areaName.areaName}</p>
         )
       case "Acciones":
         return (

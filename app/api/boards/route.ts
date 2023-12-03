@@ -25,12 +25,46 @@ const handler = async (req: Request, { params }: any) => {
         }
       })
 
-      console.log(boards)
+      for (let i = 0; i < boards.length; i++) {
+        const area = await prismaGet.area.findUnique({
+          where: {
+            id: boards[i].area
+          },
+          select: {
+            areaName: true,
+            id: true
+          }
+        })
+
+        // @ts-ignore
+        boards[i].areaName = area as any
+      }
 
       return new NextResponse(JSON.stringify({ data: boards }), { status: 200 })
+    
+    case 'POST':
+      const prismaPost = new PrismaClient()
+      const body = await req.json()
+
+      try {
+        await prismaPost.board.create({
+          data: {
+           ...body,
+           installedAt: new Date(),
+           installedBy: session.user.id
+          }
+         })
+          return new NextResponse(JSON.stringify({ message: 'Board creada con éxito' }), { status: 200 })
+      } catch (error: any) {
+        console.log(error)
+        return new NextResponse(JSON.stringify({ message: error.message }), { status: 500 })
+      }
+
+
   }
 }
 
 export {
-  handler as GET
+  handler as GET,
+  handler as POST,
 }

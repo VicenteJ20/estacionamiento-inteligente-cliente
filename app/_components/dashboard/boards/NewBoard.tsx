@@ -15,13 +15,20 @@ const NewBoardForm = () => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
   const selectedArea = useSelector((state: any) => state.selectedArea)
 
-  const handleSubmit = (values: any, { setSubmitting, resetForm }: any) => {
+  const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
     onOpen()
+    values.area = selectedArea.id as string
 
-    values.areaId = selectedArea.id as string
-    console.log(values)
-    
-    setStatusFetch(200)
+    const res = await fetch('/api/boards', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+
+    setStatusFetch(res.status)
+
     setSubmitting(false)
   }
 
