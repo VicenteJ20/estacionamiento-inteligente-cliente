@@ -25,6 +25,26 @@ export const CarouselSignUpInfo = {
   description: 'Ingrese sus datos personales para crear su cuenta.',
 }
 
+export const CarouselInfo = [
+  {
+    src: 'https://images.unsplash.com/photo-1600266511717-1cf08f902b56?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Administra tu negocio de forma fácil y sencilla',
+    title: 'Administra tu estacionamiento en tiempo real desde cualquier lugar',
+    description: 'Con SmartParking puedes administrar tus plazas de estacionamiento de forma fácil y sencilla, desde tu celular, tablet o computador. Solo necesitas conexión a internet.'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1618371731836-2b9bff9ac72a?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Desarrollado con la seguridad en mente',
+    title: 'Un sistema seguro y confiable',
+    description: 'SmartParking está desarrollado con la seguridad en mente, por lo que tus datos estarán seguros y protegidos, y solo tú podrás acceder a ellos.'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Trabaja en equipo desde cualquier lugar',
+    title: 'Trabaja en equipo sin importar donde estés',
+    description: 'SmartParking te permite trabajar en equipo con tus colaboradores, sin importar donde estén. Solo necesitan una conexión a internet y un dispositivo compatible.'
+  }
+]
 
 // WELCOME SECTION
 

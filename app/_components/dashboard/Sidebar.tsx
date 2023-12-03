@@ -1,7 +1,7 @@
 'use client'
 import React from "react"
 import { signOut, useSession } from "next-auth/react"
-import { FiHome, FiClipboard, FiMap, FiUsers, FiCheckCircle, FiEye, FiTool, FiMoreVertical } from "react-icons/fi";
+import { FiHome, FiClipboard, FiMap, FiUsers, FiCheckCircle, FiEye, FiTool, FiCpu, FiLayers} from "react-icons/fi";
 import { LinkSidebar } from "./LinkDashboard"
 import { BrandInfo } from "@/app/_dictionaries/es-CL";
 import Image from "next/image";
@@ -35,13 +35,16 @@ const Sidebar = () => {
                             <h3 className="font-semibold mb-4">ÁREAS Y PERSONAL</h3>
                             <ul>
                                 <li>
-                                    <LinkSidebar title={"Gestionar áreas"} icon={<FiMap />} href={"/dashboard/areas_personal/"} />
+                                    <LinkSidebar title={"Gestionar lugares"} icon={<FiMap />} href={"/dashboard/parking-place"} />
+                                </li>
+                                <li>
+                                    <LinkSidebar title={"Gestionar áreas"} icon={<FiLayers />} href={"/dashboard/areas"} />
                                 </li>
                                 <li>
                                     <LinkSidebar title={"Gestionar personal"} icon={<FiUsers />} href={"/dashboard/personal"} />
                                 </li>
                                 <li>
-                                    <LinkSidebar title={"Historial y logs"} icon={<FiClipboard />} href={"/dashboard/areas_personal/logs"} />
+                                    <LinkSidebar title={'Boards'} icon={<FiCpu />} href={"/dashboard/boards"} />
                                 </li>
                             </ul>
                         </li>
@@ -65,7 +68,7 @@ const Sidebar = () => {
                     </ul>
                 </nav>
             </article>
-            <section  className='flex flex-col gap-4'>
+            <section className='flex flex-col gap-4'>
                 <User
                     avatarProps={{ radius: 'sm', src: session?.data?.user?.image || '/images/profile.jpg' }}
                     name={session?.data?.user?.name}

@@ -67,7 +67,7 @@ const WelcomePage = () => {
               }
               {
                 pending && (
-                  <HeaderWelcome title={'Estamos procesando su solicitud'} description={'Cuando su solicitud sea atendida por la administración de la empresa a la que solcitó acceso, le enviaremos un correo informándo del resultado de la solicitud.'} />
+                  <HeaderWelcome title={'Estamos procesando su solicitud'} description={'Cuando su solicitud sea atendida por la administración a la que solicitó acceso, le avisaremos para que acceda a su cuenta.'} />
                 )
               }
             </>

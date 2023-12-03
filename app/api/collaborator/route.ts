@@ -54,7 +54,6 @@ const Handler = async (req: any) => {
         await prisma.$disconnect()
       }
 
-      break
     case 'POST':
       break
   }

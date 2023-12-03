@@ -68,7 +68,7 @@ export const TableRequests = () => {
   }, [router])
 
   return (
-    <Table aria-label='Solicitudes pendientes' radius='none' shadow='sm'>
+    <Table aria-label='Solicitudes pendientes' radius='none' shadow='sm' className="min-w-fit">
       <TableHeader>
         <TableColumn align='start' key='newColaborator'>
           SOLICITANTE

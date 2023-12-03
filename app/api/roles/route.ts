@@ -17,6 +17,7 @@ const handler = async (req: Request, { params } : any) => {
       select: {
         id: true,
         name: true,
+        description: true,
       }
     })
 
