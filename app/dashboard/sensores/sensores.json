@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "asdasdads",
+    "id": "SN001",
+    "status": "T",
+    "insertedAt": "03/11/2023T01137"
+  },
+  {
+    "_id": "asdasdads2",
+    "id": "SN002",
+    "status": "F",
+    "insertedAt": "03/11/2023T01138"
+  }
+]
