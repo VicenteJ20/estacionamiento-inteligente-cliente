@@ -2,12 +2,15 @@
 import { useState } from "react"
 import { HeaderDashboard } from "@/app/_components/dashboard/Header"
 import { Avatar, Button, Modal, ModalBody, ModalContent, ModalHeader, ModalFooter, useDisclosure, Spinner } from "@nextui-org/react"
+import { useRouter } from "next/navigation"
 
 export const RequestPage = (infoUser: any) => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
   const [confirm, setConfirm] = useState(false)
+  const [reject, setReject] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleRedirect = async () => {
@@ -37,6 +40,24 @@ export const RequestPage = (infoUser: any) => {
     }
   }
 
+  const handleReject = async () => {
+    try {
+      await fetch(`/api/request`, {
+        method: 'DELETE',
+        headers: {
+          contentType: 'application/json'
+        },
+        body: JSON.stringify({ userId: infoUser.infoUser[0].id })
+      })
+    } catch (err: any) {
+      console.log(err)
+    }
+
+    router.push('/dashboard/personal')
+  }
+
+
+
 
   if (infoUser && infoUser.infoUser && infoUser.infoUser.length > 0) {
     return (
@@ -47,7 +68,7 @@ export const RequestPage = (infoUser: any) => {
             <h3 className='text-xl font-semibold text-blue-900'>Datos del solicitante</h3>
             <article className='flex flex-col gap-4'>
               <Avatar src={infoUser.infoUser[0].image ? infoUser.infoUser[0].image : 'https://i.pravatar.cc/150'} size='lg' radius='none' className='w-40 h-40' isBordered={true} color='default' />
-              <form className='flex flex-col gap-4 max-w-6xl'>
+              <form className='flex flex-col gap-4 max-w-6xl' onSubmit={(e: any) => e.preventDefault()}>
                 <label className='flex flex-col gap-2'>
                   <span className='text-lg text-blue-800 font-medium'>Nombre</span>
                   <input type='text' readOnly value={infoUser.infoUser[0].name} className='w-full border border-gray-300 rounded-sm p-3 outline-none text-zinc-500' />
@@ -62,11 +83,15 @@ export const RequestPage = (infoUser: any) => {
                 </label>
               </form>
               <div className='flex flex-row gap-2 items-center justify-start'>
-                <Button color='danger' variant='ghost' onClick={onOpen}>Rechazar solicitud</Button>
+                <Button color='danger' variant='ghost' onClick={() => {
+                  setReject(true)
+                  setConfirm(false)
+                  setSuccess(false)
+                  onOpen()
+                }}>Rechazar solicitud</Button>
                 <Button color='primary' variant='shadow' onClick={() => {
                   setConfirm(true)
                   onOpen()
-
                 }}>Aceptar solicitud</Button>
               </div>
             </article>
@@ -113,11 +138,29 @@ export const RequestPage = (infoUser: any) => {
                                 </>
                               ) : (
                                 <>
-                                  <ModalHeader>¡Ooops! ha ocurrido un error.</ModalHeader>
-                                  <ModalBody className='py-8 flex flex-col gap-4'>
-                                    <h2 className='text-center text-lg text-blue-700'>Error</h2>
-                                    <p className='text-center'>Ha ocurrido un error, por favor vuelva a intentarlo más tarde.</p>
-                                  </ModalBody>
+                                  {
+                                    reject ? (
+                                      <>
+                                        <ModalHeader>Confirmación de rechazo</ModalHeader>
+                                        <ModalBody className='py-8 flex flex-col gap-4'>
+                                          <p>Al hacer click en el botón <strong>CONFIRMAR</strong>, rechazará al usuario y este quedará bloqueado de la plataforma. Esto significa que este, no podrá realizar nuevas solcitudes ni enrolarse en el sistema como un colaborador.</p>
+                                          <p>Una vez confirmado el rechazo al nuevo usuario, quedará en el registro su id, como manager a modo de dejar evidencia de las acciones realizadas</p>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                          <Button onClick={onClose} color='default' variant='ghost'>Cancelar</Button>
+                                          <Button onClick={handleReject} color='danger' variant='bordered'>Rechazar</Button>
+                                        </ModalFooter>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <ModalHeader>¡Ooops! ha ocurrido un error.</ModalHeader>
+                                        <ModalBody className='py-8 flex flex-col gap-4'>
+                                          <h2 className='text-center text-lg text-blue-700'>Error</h2>
+                                          <p className='text-center'>Ha ocurrido un error, por favor vuelva a intentarlo más tarde.</p>
+                                        </ModalBody>
+                                      </>
+                                    )
+                                  }
                                 </>
                               )
                             }

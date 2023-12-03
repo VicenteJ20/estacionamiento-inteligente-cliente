@@ -36,8 +36,8 @@ model Session {
 }
 
 model UserRole {
-  id          Int    @id
-  name        String @unique
+  id          Int     @id
+  name        String  @unique
   description String? @db.Text
   User        User[]
 }
@@ -57,6 +57,7 @@ model UserStatus {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  lastName      String?
   email         String?   @unique
   emailVerified DateTime?
   image         String?
@@ -92,6 +93,8 @@ model Enterprise {
   user                  User                    @relation(fields: [manager], references: [id], onDelete: Cascade)
   ColaboratorEnterprise ColaboratorEnterprise[]
   CollaboratorRequests  CollaboratorRequests[]
+  ParkingPlace          ParkingPlace?           @relation(fields: [parkingPlaceId], references: [id])
+  parkingPlaceId        String?
 }
 
 model ColaboratorEnterprise {
@@ -132,6 +135,8 @@ model VerificationToken {
 model ParkingPlace {
   id         String   @id @default(cuid())
   manager    String
+  alias      String   @unique
+  enterprise String
   latitude   Float
   longitude  Float
   altitude   Float
@@ -142,7 +147,8 @@ model ParkingPlace {
   createdAt  DateTime @default(now())
 
   // Por el momento se considera únicamente un usuario como clave foránea, sin embargo, hay que considerar que sería buena idea limitar las regions, comunas y códigos postales a valores predefinidos donde operaremos el servicio en la base de datos.
-  user User @relation(fields: [manager], references: [id], onDelete: Cascade)
+  user       User         @relation(fields: [manager], references: [id], onDelete: Cascade)
+  Enterprise Enterprise[]
 }
 
 model Area {

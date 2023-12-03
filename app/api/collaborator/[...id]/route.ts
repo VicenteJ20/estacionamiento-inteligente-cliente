@@ -80,6 +80,8 @@ const handler = async (req: Request, { params }: any) => {
       } catch (err: any) {
         console.log(err)
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+      } finally {
+        await prisma1.$disconnect()
       }
 
     case 'DELETE':
@@ -103,6 +105,8 @@ const handler = async (req: Request, { params }: any) => {
       } catch (err: any) {
         console.log(err)
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+      } finally {
+        await prismaDelete.$disconnect()
       }
   }
 

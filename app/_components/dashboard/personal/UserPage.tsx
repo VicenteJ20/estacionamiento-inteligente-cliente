@@ -110,7 +110,7 @@ export const UserPage = (infoUser: any) => {
                 }
               </Select>
               {
-                infoUser.infoUser[0].status === 2 && (
+                infoUser.infoUser[0].status !== 2 ? (
                   <>
                     {
                       actualRole !== '' && actualRole !== roleData[infoUser.infoUser[0].role].name && (
@@ -120,7 +120,7 @@ export const UserPage = (infoUser: any) => {
                       )
                     }
                   </>
-                )
+                ) : null
               }
               <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>

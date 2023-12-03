@@ -58,32 +58,34 @@ const SignUpForm = () => {
               <div className='flex flex-row gap-4 w-full'>
                 <div className='flex flex-col gap-3 w-full'>
                   <label htmlFor='name' className='text-lg text-zinc-800'>Nombres</label>
-                  <Field type='text' name='name' id='name' placeholder='Vicente' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl w-full' />
+                  <Field type='text' name='name' id='name' placeholder='Vicente' className='border rounded-lg border-zinc-300 px-4 py-3 text-lg' />
                   <span className='text-red-500 font-medium'><ErrorMessage name='name' /></span>
                 </div>
                 <div className='flex flex-col gap-3 w-full'>
                   <label htmlFor='lastname' className='text-lg text-zinc-800'>Apellidos:</label>
-                  <Field type='text' name='lastname' id='lastname' placeholder='Jorquera' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl w-full' />
+                  <Field type='text' name='lastname' id='lastname' placeholder='Jorquera' className='border rounded-lg border-zinc-300 px-4 py-3 text-lg w-full' />
                   <span className="text-red-500 font-medium"><ErrorMessage name='lastname' /></span>
                 </div>
               </div>
               <div className='flex flex-col gap-3'>
                 <label htmlFor='email' className='text-lg text-zinc-800'>Correo electrónico:</label>
-                <Field type='email' name='email' id='email' placeholder='Ingrese su correo electrónico' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl' />
+                <Field type='email' name='email' id='email' placeholder='Ingrese su correo electrónico' className='border rounded-lg border-zinc-300 px-4 py-3 text-lg' />
                 <span className='text-red-500 font-medium'><ErrorMessage name='email' /></span>
               </div>
-              <div className='flex flex-col gap-3'>
-                <label htmlFor='password' className='text-lg text-zinc-800'>Contraseña:</label>
-                <Field type='password' name='password' id='password' placeholder='Ingrese su contraseña' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl' />
-                <span className="text-red-500 font-medium"><ErrorMessage name='password' /></span>
-              </div>
-              <div className='flex flex-col gap-3'>
-                <label htmlFor='confirmpassword' className='text-lg text-zinc-800'>Confirmar contraseña:</label>
-                <Field type='password' name='confirmpassword' id='confirmpassword' placeholder='Vuelva a ingresar su contraseña' className='border rounded-lg border-zinc-300 px-4 py-3 text-xl' />
-                <span className="text-red-500 font-medium"><ErrorMessage name='confirmpassword' /></span>
+              <div className='flex flex-row gap-4 w-full'>
+                <div className='flex flex-col gap-3 w-full'>
+                  <label htmlFor='password' className='text-lg text-zinc-800'>Contraseña:</label>
+                  <Field type='password' name='password' id='password' placeholder='Ingrese su contraseña' className='border rounded-lg border-zinc-300 px-4 py-3 text-lg' />
+                  <span className="text-red-500 font-medium"><ErrorMessage name='password' /></span>
+                </div>
+                <div className='flex flex-col gap-3 w-full'>
+                  <label htmlFor='confirmpassword' className='text-lg text-zinc-800'>Confirmar contraseña:</label>
+                  <Field type='password' name='confirmpassword' id='confirmpassword' placeholder='Vuelva a ingresar su contraseña' className='border rounded-lg border-zinc-300 px-4 py-3 text-lg' />
+                  <span className="text-red-500 font-medium"><ErrorMessage name='confirmpassword' /></span>
+                </div>
               </div>
               <div className='text-end'>
-                <Link href='/auth/signin' className='text-blue-500 hover:text-blue-300 transition-all duration-300 ease-in-out visited:text-purple-400 text-sm md:text-lg'>¿Ya tienes una cuenta? - Inicia sesión aquí.</Link>
+                <Link href='/auth/signin' className='text-blue-500 hover:text-blue-300 transition-all duration-300 ease-in-out visited:text-purple-400 text-sm'>¿Ya tienes una cuenta? - Inicia sesión aquí.</Link>
               </div>
               <div className='flex flex-col gap-4 item-start'>
                 <ReCAPTCHA

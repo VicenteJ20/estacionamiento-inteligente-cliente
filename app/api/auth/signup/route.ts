@@ -19,6 +19,7 @@ const handler = async (req: Request) => {
       await prisma.user.create({
         data: {
           name: body.name,
+          lastName: body.lastname,
           email: body.email,
           passwordHash: passwordHash,
           role: body.role || null
