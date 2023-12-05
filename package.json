@@ -40,5 +40,9 @@
     "prisma": "^5.4.2",
     "tailwindcss": "^3",
     "typescript": "^5"
-  }
+  },
+  "description": "Este repositorio contiene la aplicación cliente que utilizaremos para llevar a cabo el proyecto. Así también, se encuentran ficheros de configuración de servicios adicionales, como docker-compose que se utiliza para configurar un contenedor de MariaDB en docker. Y también, PRISMA que es un ORM que nos permite generar modelos y posteriormente migraciones para que todos trabajemos con una base de datos en igualdad de condiciones aún cuando estemos trabajando en local.",
+  "main": "next.config.js",
+  "author": "",
+  "license": "ISC"
 }
