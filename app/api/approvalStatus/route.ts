@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../auth/[...nextauth]/route'
 
-export const approvalHandler = async (req: Request) => {
+const approvalHandler = async (req: Request) => {
 
   const data = await req.json()
 
@@ -695,4 +695,8 @@ export const approvalHandler = async (req: Request) => {
   } catch (error: any) {
     return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 })
   }
+}
+
+export {
+  approvalHandler as POST
 }
