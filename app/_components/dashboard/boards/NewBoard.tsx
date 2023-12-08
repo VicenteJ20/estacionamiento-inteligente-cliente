@@ -65,7 +65,7 @@ const NewBoardForm = () => {
               <span className='text-red-500 font-medium'><ErrorMessage name='serialNumber' /></span>
             </div>
             <div className='flex flex-row gap-3 my-4'>
-              <Button type='button' variant='bordered' color='default' className='font-medium px-4 py-2 rounded-sm'>Cancelar</Button>
+              <Button type='button' variant='bordered' color='default' className='font-medium px-4 py-2 rounded-sm' onClick={() => router.push('/dashboard/boards')}>Cancelar</Button>
               <Button type='submit' disabled={isSubmitting} variant='shadow' color='secondary' className='font-medium px-4 py-2 rounded-sm'>Agregar</Button>
             </div>
           </Form>
