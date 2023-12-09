@@ -50,17 +50,17 @@ const EditBoard = ({ data }: any) => {
             <SelectAreaEdit area={data.area} parking={data.parkingPlace} />
             <div className='flex flex-col gap-3'>
               <label htmlFor='brand' className='font-medium text-zinc-800'>Marca</label>
-              <Field type='text' name='brand' id='brand' placeholder='ej: Arduino' className='border border-zinc-400 rounded-sm px-4 py-2 outline-none max-w-xl' />
+              <Field type='text' name='brand' id='brand' placeholder='ej: Arduino' className='border border-zinc-400 rounded-sm px-4 py-2 outline-none max-w-xl' readOnly />
               <span className='text-red-500 font-medium'><ErrorMessage name='brand' /></span>
             </div>
             <div className='flex flex-col gap-3'>
               <label htmlFor='model' className='font-medium text-zinc-800'>Modelo</label>
-              <Field type='text' name='model' id='model' placeholder='ej: Arduino uno' className='border border-zinc-400 rounded-sm px-4 py-2 outline-none max-w-xl' />
+              <Field type='text' name='model' id='model' placeholder='ej: Arduino uno' className='border border-zinc-400 rounded-sm px-4 py-2 outline-none max-w-xl' readOnly />
               <span className='text-red-500 font-medium'><ErrorMessage name='model' /></span>
             </div>
             <div className='flex flex-col gap-3'>
               <label htmlFor='serialNumber' className='font-medium text-zinc-800'>Serial Number</label>
-              <Field type='text' name='serialNumber' id='serialNumber' placeholder='ej: A458B123P1' className='border border-zinc-400 rounded-sm px-4 py-2 outline-none max-w-xl' />
+              <Field type='text' name='serialNumber' id='serialNumber' placeholder='ej: A458B123P1' className='border border-zinc-400 rounded-sm px-4 py-2 outline-none max-w-xl' readOnly />
               <span className='text-red-500 font-medium'><ErrorMessage name='serialNumber' /></span>
             </div>
             <div className='flex flex-row gap-3 my-4'>
