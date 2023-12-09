@@ -41,6 +41,34 @@ const handler = async (req: Request, { params }: any) => {
       }
 
       return new NextResponse(JSON.stringify({ data: boards }), { status: 200 })
+    
+    case 'PUT':
+      const idPut = params.id.toString()
+
+      if (!idPut) return new NextResponse(JSON.stringify({ message: 'Bad request' }), { status: 400 })
+
+      const prismaPut = new PrismaClient()
+
+      try {
+        const body = await req.json()
+
+        if (!body) return new NextResponse(JSON.stringify({ message: 'Bad request' }), { status: 400 })
+
+        const board = await prismaPut.board.update({
+          where: {
+            id: idPut
+          },
+          data: {
+            area: body.area,
+          }
+        })
+        
+        return new NextResponse(JSON.stringify({ data: board }), { status: 200 })
+
+
+      } catch (err) {
+        return new NextResponse(JSON.stringify({ message: 'Bad request' }), { status: 400 })
+      }
 
     default:
       return new NextResponse(JSON.stringify({ message: 'Method not allowed' }), { status: 405 })
@@ -49,5 +77,6 @@ const handler = async (req: Request, { params }: any) => {
 }
 
 export {
-  handler as GET
+  handler as GET,
+  handler as PUT,
 }
