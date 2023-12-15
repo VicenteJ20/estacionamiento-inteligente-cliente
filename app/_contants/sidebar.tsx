@@ -23,7 +23,7 @@ export const LINK_ITEMS = [
       },
       {
         title: 'Áreas',
-        url: '/dashboard/plazas/areas'
+        url: '/dashboard/areas'
       },
       {
         title: 'Estacionamientos',
@@ -50,7 +50,7 @@ export const LINK_ITEMS = [
   },
   {
     title: 'Métricas',
-    url: '/dashboard/metricas',
+    url: '/dashboard/sensores',
     icon: <FiCpu />
   },
   {

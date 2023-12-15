@@ -11,13 +11,10 @@ const LayoutParking = () => {
   const router = useRouter()
   const [info, setInfo] = useState([]) as any
 
-  const session = useSession()
-  const clientId = session?.data?.user?.id
-
   useEffect(() => {
     async function GetParkingPlaces() {
       try {
-        const res = await fetch(`/api/parking-place?id=${clientId}`, {
+        const res = await fetch(`/api/parking-place`, {
           method: 'GET',
           headers: {
             contentType: 'application/json'
@@ -26,14 +23,13 @@ const LayoutParking = () => {
 
         const resData = await res.json()
         setInfo(resData.data)
-        console.log(resData.data)
       } catch (err: any) {
         console.log(err)
       }
     }
 
     GetParkingPlaces()
-  }, [clientId])
+  }, [])
   
   const renderCell = useCallback((place: any, columnKey: React.Key) => {
     const cellValue = place.id
@@ -80,7 +76,12 @@ const LayoutParking = () => {
   }, [router])
 
   return (
-    <section className='grid grid-cols-6 gap-16 w-full my-8'>
+    <section className='w-full flex flex-col gap-8 my-8'>
+      <div className='flex flex-col gap-4 w-fit'>
+        <div className='flex flex-col gap-4'>
+          <Button onClick={() => router.push('/dashboard/parking-place/agregar')} variant='shadow' color='success' className='text-white w-full text-lg' radius='none'>Agregar lugar</Button>
+        </div>
+      </div>
       <Table aria-label='Registro de lugares de estacionamiento' radius='none' shadow='sm' className="min-w-fit col-span-4">
         <TableHeader>
           <TableColumn align='start' key='Alias'>
@@ -110,12 +111,7 @@ const LayoutParking = () => {
           )}
         </TableBody>
       </Table>
-      <div className='w-full col-span-2 flex flex-col gap-4'>
-        <div className='flex flex-col gap-4'>
-          <h2 className='text-2xl font-bold text-gray-700'>Acciones de utilidad:</h2>
-          <Button onClick={() => router.push('/dashboard/parking-place/agregar')} variant='shadow' color='success' className='text-white w-full text-lg' radius='none'>Agregar lugar</Button>
-        </div>
-      </div>
+      
     </section>
   )
 }

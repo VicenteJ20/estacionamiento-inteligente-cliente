@@ -21,9 +21,6 @@ const handler = async (req: Request, {params} : any) => {
             manager: session.id
           }
         })
-        console.log(params)
-        console.log(session)
-        console.log(res)
 
         for (const manager of res) {
           const user = await prisma.user.findUnique({
