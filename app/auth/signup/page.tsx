@@ -1,5 +1,13 @@
 import { SignUpForm } from "@/app/_components/auth/Signup"
 import { CarouselSignUpInfo } from "@/app/_dictionaries/es-CL"
+import type { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Registrarse',
+    description: 'Bienvenido a Smartparking - Gestión de estacionamientos inteligente, eficiente y al alcance de todos. Aquí podrá crear su cuenta en Smartparking.'
+  }
+}
 
 const SignUp = async () => {
   const { title, brand } = CarouselSignUpInfo

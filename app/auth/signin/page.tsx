@@ -1,5 +1,13 @@
 import { LoginForm } from "@/app/_components/auth/Login"
 import { CarouselLogIninfo } from "@/app/_dictionaries/es-CL"
+import type { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Iniciar sesión',
+    description: 'Bienvenido a Smartparking - Gestión de estacionamientos inteligente, eficiente y al alcance de todos. Aquí podrá iniciar sesión en su cuenta de Smartparking.'
+  }
+}
 
 const SignInPage = () => {
   const { title, brand } = CarouselLogIninfo

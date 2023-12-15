@@ -5,15 +5,19 @@ import { FiEye as EyeIcon, FiEdit as EditIcon } from "react-icons/fi"
 import { MdOutlineDeleteOutline as DeleteIcon } from "react-icons/md"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 const LayoutParking = () => {
   const router = useRouter()
   const [info, setInfo] = useState([]) as any
 
+  const session = useSession()
+  const clientId = session?.data?.user?.id
+
   useEffect(() => {
     async function GetParkingPlaces() {
       try {
-        const res = await fetch('/api/parking-place', {
+        const res = await fetch(`/api/parking-place?id=${clientId}`, {
           method: 'GET',
           headers: {
             contentType: 'application/json'
@@ -29,7 +33,8 @@ const LayoutParking = () => {
     }
 
     GetParkingPlaces()
-  }, [])
+  }, [clientId])
+  
   const renderCell = useCallback((place: any, columnKey: React.Key) => {
     const cellValue = place.id
 
