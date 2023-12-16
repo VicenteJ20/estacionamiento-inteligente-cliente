@@ -134,6 +134,7 @@ export const RequestPage = (infoUser: any) => {
                                     <Spinner color='primary' />
                                     <h2 className='text-center text-lg text-blue-700'>El usuario ha sido aceptado</h2>
                                     <p className='text-center'>Recuerde que el usuario debe volver a iniciar sesión para acceder con su nuevo rol</p>
+                                    <Button onClick={() => router.push('/dashboard/personal')} color='primary' variant='shadow'>Volver al dashboard</Button>
                                   </ModalBody>
                                 </>
                               ) : (

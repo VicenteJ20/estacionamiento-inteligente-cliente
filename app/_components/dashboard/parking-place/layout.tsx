@@ -5,11 +5,9 @@ import { FiEye as EyeIcon, FiEdit as EditIcon } from "react-icons/fi"
 import { MdOutlineDeleteOutline as DeleteIcon } from "react-icons/md"
 import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useSession } from "next-auth/react"
 
 const LayoutParking = () => {
-  const router = useRouter()
-  const [info, setInfo] = useState([]) as any
+
 
   useEffect(() => {
     async function GetParkingPlaces() {
@@ -30,7 +28,9 @@ const LayoutParking = () => {
 
     GetParkingPlaces()
   }, [])
-  
+
+  const router = useRouter()
+  const [info, setInfo] = useState([]) as any
   const renderCell = useCallback((place: any, columnKey: React.Key) => {
     const cellValue = place.id
 

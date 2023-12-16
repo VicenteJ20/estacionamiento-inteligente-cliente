@@ -16,7 +16,7 @@ const handler = async (req: Request, {params}: any) => {
       
       try {
         const id = params.id
-
+        
         const res = await prismaGet.parkingPlace.findUnique({
           where: {
             id: id.toString()

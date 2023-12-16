@@ -22,33 +22,32 @@ export const metadata: Metadata = {
 const DashboardLayout = async ({
   children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
 }) => {
   const session = await getServerSession(authOptions) as any
 
   if (!session) return redirect('/auth/signin')
 
+  if (session.user.status === 4) return redirect('/dashboard/welcome')
 
-
-  return (
-    <SessionProvider session={session as any}>
-      <ReduxProvider>
-        <section className='flex'>
-          <SideBar />
-          <div className='flex-1'>
-            <MarginWithWrapper>
-              <HeaderDesktop />
-              <HeaderMobile />
-              <Wrapper>
-                {children}
-              </Wrapper>
-            </MarginWithWrapper>
-          </div>
-        </section>
-      </ReduxProvider>
-
-    </SessionProvider>
-  )
+    return (
+      <SessionProvider session={session as any}>
+        <ReduxProvider>
+          <section className='flex'>
+            <SideBar />
+            <div className='flex-1'>
+              <MarginWithWrapper>
+                <HeaderDesktop />
+                <HeaderMobile />
+                <Wrapper>
+                  {children}
+                </Wrapper>
+              </MarginWithWrapper>
+            </div>
+          </section>
+        </ReduxProvider>
+      </SessionProvider>
+    )
 }
 
 export default DashboardLayout

@@ -18,7 +18,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className='w-screen bg-zinc-50 grid grid-cols-1 xl:grid-cols-2 gap-4 relative'>
       <div className="relative col-span-1  pb-24 flex flex-col items-center justify-around h-screen">
-        <div className='w-full xl:w-[60%] bg-white py-12 border border-zinc-100 shadow-xl rounded-sm shadow-zinc-300'>
+        <div className='w-full xl:w-[80%] bg-white py-12 border border-zinc-100 shadow-xl rounded-sm shadow-zinc-300'>
           {children}
         </div>
         <div className=" text-zinc-900 absolute left-0 bottom-0 right-0 px-5 py-5 flex flex-col sm:flex-row gap-4 justify-between w-full text-center">

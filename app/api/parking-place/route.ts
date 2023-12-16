@@ -15,11 +15,18 @@ const handler = async (req: Request, {params} : any) => {
     case 'GET':
       const prisma = new PrismaClient()
 
+      console.log(session)
       try {
         const res = await prisma.parkingPlace.findMany({
           where: {
-            manager: session.id
-          }
+            manager: session.user.id,
+            OR: [
+             {
+              enterprise: session.user.enterprise
+             }
+            ]
+          },
+          
         })
 
         for (const manager of res) {

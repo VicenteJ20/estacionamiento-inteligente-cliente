@@ -44,12 +44,12 @@ const HeaderMobile = () => {
       className={`fixed inset-0 z-40 w-full md:hidden ${isOpen ? '' : 'pointer-events-none'}`}
       ref={containerRef}>
       <motion.div
-        className='absolute inset-0 right-0 w-full bg-white'
+        className='absolute inset-0 right-0 w-full bg-zinc-900 text-white'
         variants={sidebar}
       />
       <motion.ul
         variants={variants}
-        className='absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'>
+        className='absolute grid text-white w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'>
         {
           LINK_ITEMS.map((item: any, index: number) => {
             const isLastItem = index === LINK_ITEMS.length - 1

@@ -11,7 +11,7 @@ const HeaderDesktop = () => {
   return (
     <div
       className={cn(
-        `sticky inset-x-0 top-0 py-1.5 z-30 w-full transition-all border-b border-gray-200`,
+        `sticky inset-x-0 bg-stone-900 top-0 py-1.5 z-40 w-full transition-all border-b border-gray-200`,
         {
           'border-b border-gray-200 bg-stone-900 backdrop-blur-lg': scrolled,
           'border-b border-gray-200 bg-stone-900': selectedLayout,
@@ -25,7 +25,7 @@ const HeaderDesktop = () => {
             className="flex flex-row space-x-3 items-center justify-center md:hidden"
           >
             <span className="h-7 w-7 bg-zinc-300 rounded-sm" />
-            <span className="font-bold text-xl flex ">SmartParking</span>
+            <span className="font-bold text-xl flex text-white">SmartParking</span>
           </Link>
         </div>
       </div>
