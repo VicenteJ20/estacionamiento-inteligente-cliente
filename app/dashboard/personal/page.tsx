@@ -14,7 +14,7 @@ const PersonalHomePage = () => {
   return (
     <>
       <section className='flex flex-col gap-6 mb-8 w-full'>
-        <HeaderDashboard title='Gestión de personal' overtitle={'Dashboard / personal'} />
+        <HeaderDashboard title='Gestión de personal' overtitle={'Dashboard / personal'} description='En esta sección podrá visualizar la información básica y modificar el rol y/o estado de la cuenta asociada a sus colaboradores.' />
       </section>
       <PersonalLayout />
     </>

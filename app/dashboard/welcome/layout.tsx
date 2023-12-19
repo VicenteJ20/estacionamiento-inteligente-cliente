@@ -6,6 +6,7 @@ import { ReduxProvider } from "@/app/_redux/provider"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { CloseClient } from "@/app/_components/dashboard/closeClient"
+import { redirect } from "next/navigation"
 
 const WelcomeLayout = async ({
   children
@@ -15,11 +16,11 @@ const WelcomeLayout = async ({
   const session = await getServerSession(authOptions) as any
   const { title, icon } = BrandInfo
 
+  if (!session) return redirect('/auth/signin')
 
-  
   return (
     <ReduxProvider>
-      <section className='w-screen min-h-screen bg-blue-500  p-8 flex flex-col items-center justify-center absolute top-0 left-0 z-20'>
+      <section className='w-screen min-h-screen bg-blue-500  p-8 flex flex-col items-center justify-center absolute top-0 left-0 z-40'>
         <header className='flex flex-row gap-4 items-center absolute left-8 top-8'>
           <Image src={icon} alt={title} width={42} height={42} className='invert' />
           <h2 className='font-semibold text-xl text-white'>{title}</h2>

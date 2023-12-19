@@ -4,7 +4,7 @@ import { authOptions } from "../auth/[...nextauth]/route"
 import { PrismaClient } from "@prisma/client"
 
 
-const handler = async (req: Request) => {
+const handler = async (req: Request, {params} : any) => {
   const session = await getServerSession(authOptions) as any
 
   if (!session) return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
@@ -18,11 +18,15 @@ const handler = async (req: Request) => {
       try {
         const res = await prisma.parkingPlace.findMany({
           where: {
-            manager: session.id
-          }
+            manager: session.user.id,
+            OR: [
+             {
+              enterprise: session.user.enterprise
+             }
+            ]
+          },
+          
         })
-        console.log(session)
-        console.log(res)
 
         for (const manager of res) {
           const user = await prisma.user.findUnique({
