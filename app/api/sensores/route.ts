@@ -23,7 +23,9 @@ const handler = async (req: NextRequest) => {
 
       try {
         await sensorConnection()
-        const data = await Sensor.find({ Board: searchParams.get('board')?.toString()})
+        // BUSQUEDA DE TODOS LOS SENSORES CON UNA BOARD ESPECÍFICA
+        //const data = await Sensor.find({ Board: searchParams.get('board')?.toString()})
+        const data = await Sensor.find()
         return new NextResponse(JSON.stringify({ message: 'Sensores encontrados', data }), { status: 200 })
       } catch (err: any) {
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
