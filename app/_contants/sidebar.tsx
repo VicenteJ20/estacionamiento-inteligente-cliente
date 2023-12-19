@@ -26,8 +26,8 @@ export const LINK_ITEMS = [
         url: '/dashboard/areas'
       },
       {
-        title: 'Estacionamientos',
-        url: '/dashboard/plazas/estacionamientos'
+        title: 'Placas',
+        url: '/dashboard/boards'
       }
     ],
     icon: <FiMap />

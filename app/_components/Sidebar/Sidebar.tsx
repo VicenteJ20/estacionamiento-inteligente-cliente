@@ -44,7 +44,7 @@ const SideBar = () => {
               variant='shadow'
               color='danger'
               onClick={() => signOut()}>
-              Sign Out
+              Cerrar sesión
             </Button>
           </div>
         </div>

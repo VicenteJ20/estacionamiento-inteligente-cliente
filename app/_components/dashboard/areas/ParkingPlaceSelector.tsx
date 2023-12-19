@@ -54,7 +54,7 @@ const ParkingPlaceSelector = () => {
       <Select
         labelPlacement='outside'
         label='Lugar de estacionamiento'
-        className='max-w-xs'
+        className='max-w-xs bg-white'
         selectorIcon={<TbSelector />}
         onChange={handleChange}
         defaultSelectedKeys={[selectedParking.id]}

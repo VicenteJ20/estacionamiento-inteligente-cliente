@@ -15,7 +15,6 @@ const handler = async (req: Request, {params} : any) => {
     case 'GET':
       const prisma = new PrismaClient()
 
-      console.log(session)
       try {
         const res = await prisma.parkingPlace.findMany({
           where: {
