@@ -49,7 +49,7 @@ const Handler = async (req: any) => {
         return new NextResponse(JSON.stringify({ data: response }), { status: 200 })
       } catch (err: any) {
         console.log(err)
-        return new NextResponse(JSON.stringify({ message: 'ERROR INTERNO DEL SERVIDOR' }), { status: 200 })
+        return new NextResponse(JSON.stringify({ message: 'ERROR INTERNO DEL SERVIDOR' }), { status: 500 })
       } finally {
         await prisma.$disconnect()
       }
