@@ -6,9 +6,9 @@ import { sensorConnection } from "@/app/_database/sensoresbd";
 import Sensor from "@/models/Sensor";
 
 const handler = async (req: NextRequest) => {
-  const session = await getServerSession(authOptions) as any
+  // const session = await getServerSession(authOptions) as any
 
-  if (!session) return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
+  // if (!session) return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
 
   const { method, url } = req
 
@@ -74,9 +74,28 @@ const handler = async (req: NextRequest) => {
       } finally {
         await prisma.$disconnect()
       }
+
+    case 'POST':
+      try {
+        await sensorConnection()
+
+        const body = await req.json()
+
+        const newSensor = {
+          ...body,
+          fecha_ingreso: new Date()
+        }
+
+        await new Sensor(newSensor)
+
+        return new NextResponse(JSON.stringify({ message: 'Sensor creado' }), { status: 201 })
+      } catch (err: any) {
+        return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
+      }
   }
 }
 
 export {
-  handler as GET
+  handler as GET,
+  handler as POST
 }

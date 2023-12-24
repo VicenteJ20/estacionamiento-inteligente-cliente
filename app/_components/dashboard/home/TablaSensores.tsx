@@ -66,13 +66,13 @@ const TablaSensores = () => {
       </TableHeader>
       <TableBody emptyContent={'No se ha encontrado información'}>
         {sensores.map((item: any) => (
-          <TableRow key={item.ID}>
-            <TableCell>{item.ID}</TableCell>
+          <TableRow key={item.Id}>
+            <TableCell>{item.Id}</TableCell>
             <TableCell>{item.Area}</TableCell>
             <TableCell>
              {
-              item.Status === 'A' ? <Chip color='success'>Disponible</Chip> :
-              item.Status === 'I' ? <Chip color='warning'>Inconcluso</Chip> : <Chip color='danger'>Ocupado</Chip>
+              item.Status === 'F' ? <Chip color='success'>Disponible</Chip> :
+              item.Status === 'I' ? <Chip color='warning'>Interferencia</Chip> : <Chip color='danger'>Ocupado</Chip>
              }
             </TableCell>
             {/* <TableCell>
