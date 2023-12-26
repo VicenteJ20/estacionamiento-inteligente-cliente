@@ -10,7 +10,7 @@ const RechartsGrafico = dynamic( () => import('@/app/_components/dashboard/Grafi
 const SensorHomePage = async () => {
   return (
     <div>
-      <p> sensores home view</p>
+      
       <section className=" min-h-screen w-screen relative"> 
       
       <RechartsGrafico/>

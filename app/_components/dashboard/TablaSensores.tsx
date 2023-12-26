@@ -58,17 +58,19 @@ const TablaSensores = () => {
   // se hace un display acorde al useState -R
   const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: data.loadMore });
   return (
-    <div className="p-24">
+    <div className=" relative max-w-[100%] ">
       {loading ? (
         <></>
       ) : error ? (
         errorComponent
       ) : (
-        <div>
+        <div className="">
 
-          <Table
+          <Table 
+
+            aria-label='Registro sensores' radius='none' shadow='sm'
+
             isHeaderSticky
-            aria-label="Example table with infinite pagination"
             baseRef={scrollerRef}
             bottomContent={
               hasMore ? (
@@ -78,14 +80,15 @@ const TablaSensores = () => {
               ) : null
             }
             classNames={{
-              base: "max-h-[520px] overflow-scroll",
-              table: "min-h-[400px]",
+              base: "max-h-[520px] max-w-[900px] overflow-scroll",
+              table: "min-h-[400px] max-w-[600px] ",
             }}
           >
             <TableHeader>
               <TableColumn key="Id"> Id del sensor </TableColumn>
               <TableColumn key="Status"> Status actual del sensor </TableColumn>
               <TableColumn key="_ids"> Info </TableColumn>
+              <TableColumn key="fecha_"> Timestamp </TableColumn>
 
             </TableHeader>
             <TableBody
@@ -105,6 +108,10 @@ const TablaSensores = () => {
                     <TableCell>
                       {item._ids}
                     </TableCell>
+                    <TableCell>
+                      {item.fecha_ingreso}
+                    </TableCell>
+
                   </TableRow>
                 ))
               }

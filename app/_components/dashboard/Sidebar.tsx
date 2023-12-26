@@ -12,7 +12,7 @@ const Sidebar = () => {
     const session = useSession() as any
     const { title, icon } = BrandInfo
     return (
-        <aside className="bg-gray-800 text-white flex flex-col gap-8 justify-between min-w-[17rem] min-h-screen py-8 px-5 absolute top-0 left-0 bottom-0">
+        <aside className="bg-gray-800 z-50 text-white flex flex-col gap-8 justify-between min-w-[17rem] min-h-screen py-8 px-5 absolute top-0 left-0 bottom-0">
             <article className='flex flex-col gap-8'>
                 <header className='flex flex-row gap-4 justify-start items-center'>
                     <Image src={icon} width={32} height={32} alt='' className='invert' />
