@@ -65,7 +65,7 @@ const TablaSensores = () => {
         {/* <TableColumn>Acciones</TableColumn> */}
       </TableHeader>
       <TableBody emptyContent={'No se ha encontrado información'}>
-        {sensores.map((item: any) => (
+        {sensores && sensores.map((item: any) => (
           <TableRow key={item.Id}>
             <TableCell>{item.Id}</TableCell>
             <TableCell>{item.Area}</TableCell>

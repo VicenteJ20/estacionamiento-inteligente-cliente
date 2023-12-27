@@ -53,6 +53,9 @@ const handler = async (req: NextRequest) => {
           }
         }
 
+        console.log(boards)
+        console.log(availableAreas)
+
         // BUSQUEDA DE TODOS LOS SENSORES CON UNA BOARD ESPECÍFICA
         //const data = await Sensor.find({ Board: searchParams.get('board')?.toString()})
         const data = await Sensor.find({
@@ -63,10 +66,12 @@ const handler = async (req: NextRequest) => {
 
         for (let i = 0; i < data.length; i++) {
           let info = { ...data[i]._doc }
-          info.Area = availableAreas[i].areaName
+          
 
           data[i]._doc = info
         }
+
+        console.log(data)
         
         return new NextResponse(JSON.stringify({ message: 'Sensores encontrados', data }), { status: 200 })
       } catch (err: any) {
