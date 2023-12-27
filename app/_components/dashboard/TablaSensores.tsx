@@ -20,7 +20,7 @@ const TablaSensores = () => {
     // Se deja el loading en true mientras se hace el fetch -R
     setLoading(true);
 
-    fetch(`http://localhost:4000/data/`, {
+    fetch(`/api/sensores`, {
       method: "GET",
       headers: {
         contentType: "application/JSON"
@@ -31,7 +31,7 @@ const TablaSensores = () => {
         // se hace el set de la data si todo sale bien... -R
         const todo = await res.json();
         setHasMore(todo.next !== null);
-        setData(todo);
+        setData(todo.data);
 
       })
       .catch((e) => {
@@ -54,7 +54,8 @@ const TablaSensores = () => {
 
 
 
-  //console.log(data) // <----Recomiendo descomentar esto al momento de testear la conexión con la APi de los sensores   -R
+
+  console.log(data) // <----Recomiendo descomentar esto al momento de testear la conexión con la APi de los sensores   -R
   // se hace un display acorde al useState -R
   const [loaderRef, scrollerRef] = useInfiniteScroll({ hasMore, onLoadMore: data.loadMore });
   return (
@@ -87,8 +88,9 @@ const TablaSensores = () => {
             <TableHeader>
               <TableColumn key="Id"> Id del sensor </TableColumn>
               <TableColumn key="Status"> Status actual del sensor </TableColumn>
-              <TableColumn key="_ids"> Info </TableColumn>
-              <TableColumn key="fecha_"> Timestamp </TableColumn>
+              <TableColumn key="_ids"> _id </TableColumn>
+              <TableColumn key="Board"> Board </TableColumn>
+              <TableColumn key="fecha_ingreso"> Timestamp </TableColumn>
 
             </TableHeader>
             <TableBody
@@ -106,12 +108,14 @@ const TablaSensores = () => {
                       {item.Status}
                     </TableCell>
                     <TableCell>
-                      {item._ids}
+                      {item._id}
+                    </TableCell>
+                    <TableCell>
+                      {item.Board}
                     </TableCell>
                     <TableCell>
                       {item.fecha_ingreso}
                     </TableCell>
-
                   </TableRow>
                 ))
               }

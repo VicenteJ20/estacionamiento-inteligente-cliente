@@ -13,9 +13,10 @@ const SensorHomePage = async () => {
       
       <section className=" min-h-screen w-screen relative"> 
       
-      <RechartsGrafico/>
       <TablaSensores/>
+      <RechartsGrafico/>
       <TarjetaDeUso/>
+
       </section>
 
     </div>

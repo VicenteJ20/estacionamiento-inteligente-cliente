@@ -39,8 +39,8 @@ const  RechartsGrafico = () => {
         useEffect(() => {
             // Se deja el loading en true mientras se hace el fetch -R
             setLoading(true);
-            //IMPORTANTE, especificar la api que muestre los datos del sensor
-            fetch(`http://localhost:4040/data/`,{
+            //IMPORTANTE, especificar la ruta en la api que muestre los datos del sensor
+            fetch(`/api/datosSemana`,{
             method:"GET",
             headers:{
                 contentType: "application/JSON"
@@ -69,7 +69,6 @@ const  RechartsGrafico = () => {
 
     const errorComponent = <div className="text-red-500">Error: {error}</div>;
 
-    console.log(data1)
     return (
         <div className="p-24">
       {loading ? (
