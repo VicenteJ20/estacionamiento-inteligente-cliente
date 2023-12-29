@@ -44,35 +44,69 @@ const handler = async (req: NextRequest) => {
               area: availableAreas[i].id
             },
             select: {
-              id: true
+              id: true,
+              area: true
             }
           })
 
           if (board.length > 0) {
-            boards.push(board[0].id)
+            boards.push(board)
           }
         }
 
-        console.log(boards)
-        console.log(availableAreas)
+        // console.log(boards)
+        // console.log(availableAreas)
+
+        const boardsId = boards.map((board: any) => board[0].id)
+
+        //console.log(boardsId)
 
         // BUSQUEDA DE TODOS LOS SENSORES CON UNA BOARD ESPECÍFICA
         //const data = await Sensor.find({ Board: searchParams.get('board')?.toString()})
-        const data = await Sensor.find({
-          Board: {
-            $in: boards
+        // const data = await Sensor.find({
+        //   Board: {
+        //     $in: boardsId
+        //   }
+        // })
+
+        const data = await Sensor.aggregate([
+          {
+            $match: {
+              Board: {
+                $in: boardsId
+              }
+            }
+          },
+          {
+            $sort: {
+              fecha_ingreso: -1
+            }
+          },
+          {
+            $group: {
+              _id: "$Id",
+              doc: {
+                $first: "$$ROOT"
+              }
+            }
+          },
+          {
+            $replaceRoot: {
+              newRoot: "$doc"
+            }
           }
-        })
+        ])
 
-        for (let i = 0; i < data.length; i++) {
-          let info = { ...data[i]._doc }
-          
-
-          data[i]._doc = info
+        if (data.length > 0) {
+          for (let i = 0; i < data.length; i++) {
+            let item = { ...data[i] }
+            item.Area = availableAreas.find((area: any) => area.id === data[i].Board)
+            data[i] = item
+          }
         }
 
         console.log(data)
-        
+
         return new NextResponse(JSON.stringify({ message: 'Sensores encontrados', data }), { status: 200 })
       } catch (err: any) {
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
