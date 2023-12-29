@@ -43,7 +43,7 @@ const DashboardHomePage = async () => {
 
         </div>
 
-        <div className="col-span-4 grid grid-cols-3 gap-1 border-2 border-slate-900 p-2 my-4 rounded-lg">
+        <div className="col-span-4 grid grid-cols-3 gap-1 bg-white shadow-md border-inherit border-1.5 p-2 my-4 rounded-md">
           <div className="grid grid-cols-12 gap-1">
             <div className="col-span-3"></div>
             <CarDiv id={"asE-srs1"} status={"F"}/>
@@ -369,9 +369,9 @@ const DashboardHomePage = async () => {
 
         <h1 className="text-center text-2xl font-bold my-2">  Soporte y ayuda</h1>
 
-        <Support title="Visitar FAQ" icon={<LuHelpCircle />} iconColorClass="text-black" />
-        <Support title="Solicitar soporte" icon={<BiSupport />} iconColorClass="text-black" />
 
+        <Support title="Visitar FAQ" icon={<LuHelpCircle />} onClickRedirectUrl="https://tudireccion.com" />
+        <Support title="Solicitar soporte" icon={<BiSupport />} onClickRedirectUrl="https://discord.gg/T4qsUu85D8" />
 
       </div>
     </div>
