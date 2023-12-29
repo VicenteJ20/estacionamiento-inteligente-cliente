@@ -18,11 +18,11 @@ const TablaSensores = () => {
   const areasRedux = useSelector((state: any) => state.areasReducer.areas)
 
   useEffect(() => {
-    
+
     async function getSensores() {
       console.log('redux')
       console.log(areasRedux)
-      
+
       console.log(areas)
       const res = await fetch(`/api/sensores?parkingPlace=${selectedParking.id} ${areasRedux.length === 0 ? '&getAreas=true' : ''}`, {
         method: 'GET',
@@ -35,6 +35,7 @@ const TablaSensores = () => {
 
       setSensores(data.data)
       fetched.current = true
+      console.log(data.data)
     }
 
     async function getAreas() {
@@ -44,7 +45,7 @@ const TablaSensores = () => {
           'Content-Type': 'application/json'
         }
       })
-      
+
       const data = await res.json()
       setAreas(data.data)
     }
@@ -61,6 +62,7 @@ const TablaSensores = () => {
       <TableHeader>
         <TableColumn>Identificador</TableColumn>
         <TableColumn>Área</TableColumn>
+        <TableColumn>Estado</TableColumn>
         <TableColumn>Último registro</TableColumn>
         {/* <TableColumn>Acciones</TableColumn> */}
       </TableHeader>
@@ -68,12 +70,17 @@ const TablaSensores = () => {
         {sensores && sensores.map((item: any) => (
           <TableRow key={item.Id}>
             <TableCell>{item.Id}</TableCell>
-            <TableCell>{item.Area}</TableCell>
+            <TableCell>{!item.Area ? 'No disponible' : item.Area}</TableCell>
             <TableCell>
-             {
-              item.Status === 'F' ? <Chip color='success'>Disponible</Chip> :
-              item.Status === 'I' ? <Chip color='warning'>Interferencia</Chip> : <Chip color='danger'>Ocupado</Chip>
-             }
+              {
+                item.fecha_ingreso ?  new Date(item.fecha_ingreso).toLocaleString('es-CL') : 'Sin registro'
+              }
+            </TableCell>
+            <TableCell>
+              {
+                item.Status === 'F' ? <Chip color='success'>Disponible</Chip> :
+                  item.Status === 'I' ? <Chip color='warning'>Interferencia</Chip> : <Chip color='danger'>Ocupado</Chip>
+              }
             </TableCell>
             {/* <TableCell>
               <Button color={'success'} variant={'bordered'} className='font-bold' onClick={() => router.push(`/dashboard/sensores/${item._id}`)}>Ver</Button>
