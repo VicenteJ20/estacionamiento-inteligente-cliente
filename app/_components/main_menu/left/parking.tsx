@@ -7,6 +7,7 @@ async function fetchData(id: string, status: string) {
     setTimeout(() => {
       // Obtener el área del id para asignar el color
       const area = id.substring(0, 3);
+  
 
       // Asignar color basado en los primeros tres caracteres del id
       let colorClass = "";
