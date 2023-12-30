@@ -27,7 +27,7 @@ const DashboardHomePage = async () => {
 // en los sensores 
 // asE es area de estudiantes color azul
 // asA es area de adm color rojo
-// asD area de docentes color amarillo
+// asD     ---   area de docentes color amarillo
 // asV es area de visitas color verde 
 // asM es area de minusvalidos color gris
   return (
@@ -43,7 +43,7 @@ const DashboardHomePage = async () => {
 
         </div>
 
-        <div className="col-span-4 grid grid-cols-3 gap-1 border-2 border-slate-900 p-2 my-4 rounded-lg">
+        <div className="col-span-4 grid grid-cols-3 gap-1 bg-white shadow-md border-inherit border-1.5 p-2 my-4 rounded-md">
           <div className="grid grid-cols-12 gap-1">
             <div className="col-span-3"></div>
             <CarDiv id={"asE-srs1"} status={"F"}/>
@@ -65,7 +65,7 @@ const DashboardHomePage = async () => {
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs1"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
@@ -79,95 +79,95 @@ const DashboardHomePage = async () => {
             <CarDiv id={"asE-srs17"} status={"F"}/>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs3"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs4"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs5"} status={"F"}/>
             <div className="col-span-3"></div>
+            <CarDiv id={"asD-srs1"} status={"F"}/>
             <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
+            <CarDiv id={"asD-srs3"} status={"F"}/>
+            <CarDiv id={"asD-srs4"} status={"F"}/>
+            <CarDiv id={"asD-srs5"} status={"F"}/>
+            <CarDiv id={"asD-srs6"} status={"F"}/>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs6"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs7"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs8"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
+            <CarDiv id={"asD-srs7"} status={"F"}/>
+            <CarDiv id={"asD-srs8"} status={"F"}/>
+            <CarDiv id={"asD-srs9"} status={"F"}/>
+            <CarDiv id={"asD-srs10"} status={"F"}/>
+            <CarDiv id={"asD-srs11"} status={"F"}/>
+            <CarDiv id={"asD-srs12"} status={"F"}/>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs9"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs10"} status={"F"}/>
             <div className="col-span-9"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs11"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs12"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs13"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs14"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs15"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs16"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs17"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs18"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs19"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs20"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs21"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs22"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs23"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs24"} status={"F"}/>
             <div className="col-span-5"></div>
 
             <div className="col-span-2"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs25"} status={"F"}/>
             <div className="col-span-3"></div>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs26"} status={"F"}/>
             <div className="col-span-5"></div>
           </div>
           <div className="grid grid-cols-12 gap-1">
@@ -207,35 +207,35 @@ const DashboardHomePage = async () => {
 
             <div className="h-5 w-5 col-span-12"></div>
 
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
+            <CarDiv id={"asD-srs13"} status={"F"}/>
+            <CarDiv id={"asD-srs14"} status={"F"}/>
+            <CarDiv id={"asD-srs15"} status={"F"}/>
+            <CarDiv id={"asD-srs16"} status={"F"}/>
+            <CarDiv id={"asD-srs17"} status={"F"}/>
+            <CarDiv id={"asD-srs18"} status={"F"}/>
+            <CarDiv id={"asD-srs19"} status={"F"}/>
+            <CarDiv id={"asD-srs20"} status={"F"}/>
+            <CarDiv id={"asD-srs21"} status={"F"}/>
+            <CarDiv id={"asD-srs22"} status={"F"}/>
+            <CarDiv id={"asD-srs23"} status={"F"}/>
+            <CarDiv id={"asD-srs24"} status={"F"}/>
 
             <div className="h-5 w-5 col-span-12"></div>
 
             <div className="h-5 w-5 col-span-12"></div>
 
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
+            <CarDiv id={"asD-srs25"} status={"F"}/>
+            <CarDiv id={"asD-srs26"} status={"F"}/>
+            <CarDiv id={"asD-srs27"} status={"F"}/>
+            <CarDiv id={"asD-srs28"} status={"F"}/>
+            <CarDiv id={"asD-srs29"} status={"F"}/>
+            <CarDiv id={"asD-srs30"} status={"F"}/>
+            <CarDiv id={"asD-srs31"} status={"F"}/>
+            <CarDiv id={"asD-srs32"} status={"F"}/>
+            <CarDiv id={"asD-srs33"} status={"F"}/>
+            <CarDiv id={"asD-srs34"} status={"F"}/>
+            <CarDiv id={"asD-srs35"} status={"F"}/>
+            <CarDiv id={"asD-srs36"} status={"F"}/>
 
             <div className="h-5 w-5 col-span-12"></div>
 
@@ -264,12 +264,12 @@ const DashboardHomePage = async () => {
             <CarDiv id={"asE-srs45"} status={"F"}/>
             <CarDiv id={"asE-srs46"} status={"F"}/>
             <CarDiv id={"asE-srs47"} status={"F"}/>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
-            <CarDiv id={"asA-srs2"} status={"F"}/>
+            <CarDiv id={"asA-srs27"} status={"F"}/>
+            <CarDiv id={"asA-srs28"} status={"F"}/>
+            <CarDiv id={"asA-srs29"} status={"F"}/>
+            <CarDiv id={"asA-srs30"} status={"F"}/>
+            <CarDiv id={"asA-srs31"} status={"F"}/>
+            <CarDiv id={"asA-srs32"} status={"F"}/>
 
             <div className="h-5 w-5 col-span-12"></div>
 
@@ -284,7 +284,7 @@ const DashboardHomePage = async () => {
             <CarDiv id={"asE-srs52"} status={"F"}/>
             <CarDiv id={"asE-srs53"} status={"F"}/>
             <CarDiv id={"asE-srs54"} status={"F"}/>
-            <CarDiv id={"asV-srs2"} status={"F"}/>
+            <CarDiv id={"asV-srs1"} status={"F"}/>
             <CarDiv id={"asV-srs2"} status={"F"}/>
             <div className="col-span-3"></div>
 
@@ -293,15 +293,15 @@ const DashboardHomePage = async () => {
 
             <div className="h-5 w-5 col-span-12"></div>
 
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
+            <CarDiv id={"asD-srs37"} status={"F"}/>
+            <CarDiv id={"asD-srs38"} status={"F"}/>
+            <CarDiv id={"asD-srs39"} status={"F"}/>
+            <CarDiv id={"asD-srs40"} status={"F"}/>
+            <CarDiv id={"asD-srs41"} status={"F"}/>
+            <CarDiv id={"asD-srs42"} status={"F"}/>
+            <CarDiv id={"asD-srs43"} status={"F"}/>
+            <CarDiv id={"asD-srs44"} status={"F"}/>
+            <CarDiv id={"asD-srs45"} status={"F"}/>
             <div className="col-span-3"></div>
 
 
@@ -309,10 +309,10 @@ const DashboardHomePage = async () => {
 
             <div className="h-5 w-5 col-span-12"></div>
 
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
-            <CarDiv id={"asD-srs2"} status={"F"}/>
+            <CarDiv id={"asD-srs46"} status={"F"}/>
+            <CarDiv id={"asD-srs47"} status={"F"}/>
+            <CarDiv id={"asD-srs48"} status={"F"}/>
+            <CarDiv id={"asD-srs49"} status={"F"}/>
             <CarDiv id={"asM-srs1"} status={"F"}/>
             <CarDiv id={"asM-srs2"} status={"F"}/>
             <CarDiv id={"asM-srs3"} status={"F"}/>
@@ -369,9 +369,9 @@ const DashboardHomePage = async () => {
 
         <h1 className="text-center text-2xl font-bold my-2">  Soporte y ayuda</h1>
 
-        <Support title="Visitar FAQ" icon={<LuHelpCircle />} iconColorClass="text-black" />
-        <Support title="Solicitar soporte" icon={<BiSupport />} iconColorClass="text-black" />
 
+        <Support title="Visitar FAQ" icon={<LuHelpCircle />} onClickRedirectUrl="https://discord.gg/T4qsUu85D8" />
+        <Support title="Solicitar soporte" icon={<BiSupport />} onClickRedirectUrl="https://discord.gg/T4qsUu85D8" />
 
       </div>
     </div>

@@ -43,21 +43,21 @@ const handler = async (req: NextRequest) => {
           const sumaSensoresHoy =  sumaSensoresHoyx.length;
           
           const sumaSensoresADMx = await Sensor.find({
-            Id: /^ADM/,
+            Id: /^asA/,
             
           });
 
           const sumaSensoresADM = sumaSensoresADMx.length;
 
           const sumaSensoresALMx = await Sensor.find({
-            Id: /^ALM/,
+            Id: /^asE/,
             
           });
           
           const sumaSensoresALM = sumaSensoresALMx.length;
 
           const sumaSensoresILMx = await Sensor.find({
-            Id: /^ILM/,
+            Id: /^asV/,
             
           });
 
