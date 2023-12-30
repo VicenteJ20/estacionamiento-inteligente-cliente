@@ -6,24 +6,17 @@ import { sensorConnection } from "@/app/_database/sensoresbd";
 import Sensor from "@/models/Sensor";
 
 const handler = async (req: NextRequest) => {
-  //const session = await getServerSession(authOptions) as any
+  const session = await getServerSession(authOptions) as any
 
-  //if (!session) return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
-
+  if (!session) return new NextResponse(JSON.stringify({ message: 'Usted no se encuentra autorizado para realizar esta acción' }), { status: 401 })
   const { method } = req
-
   switch (method) {
     case 'GET':
       const prisma = new PrismaClient()
-
-
       const searchParams = req.nextUrl.searchParams
-
       console.log(searchParams)
-
       try {
         await sensorConnection()
-
         /*
         const hoy = new Date();
         hoy.setHours(0, 0, 0, 0); // Establecer la hora a 00:00:00 para comparar solo la fecha
@@ -49,8 +42,18 @@ const handler = async (req: NextRequest) => {
         const x6 = new Date()
         x6.setDate(hoy.getDate() - 6); // Obtener la fecha de hace 6 dias
         */
+        const fechaActual = new Date();
+        const fechaAnterior = new Date(fechaActual.getTime() - (7 * 24 * 60 * 60 * 1000));
+        //console.log(fechaActual)
 
+        //POR ALGUNA RAZÓN QUE ESCAPA DE MI ENTENDIMENTO NO ME ESÁN FUNCIONANDO LOS FILTROS POR FECHA AYUDA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -R 
 
+        const data = await Sensor.find({
+          fecha_ingreso: {
+            $gte: fechaAnterior,
+            $lte: fechaActual,
+          },
+        });
 
         /*
         const dataHoy = await Sensor.find({ fecha_ingreso: hoy.toString })
@@ -74,26 +77,12 @@ const handler = async (req: NextRequest) => {
         const dataX6s = await Sensor.find({ fecha_ingreso: x6.toString })
         const dataX6 = dataX6s.length;
         */
-        const fechaActual = new Date();
-        const fechaAnterior = new Date(fechaActual.getTime() - (7 * 24 * 60 * 60 * 1000));
-
-        console.log(fechaActual)
-        const data = await Sensor.find({
-          fecha_ingreso: {
-            $gte: fechaAnterior,
-            $lte: fechaActual,
-          },
-        });
-
-
         const fechas = [fechaAnterior, fechaActual];
-
         const sensores = await Sensor.find({
           fecha_ingreso: {
             $in: fechas,
           },
         });
-
         /*
         console.log("x")
         console.log(hoy)
@@ -115,8 +104,6 @@ const handler = async (req: NextRequest) => {
         console.log(dataX5)
         console.log(dataX6)
         */
-
-
         return new NextResponse(JSON.stringify({ message: 'Sensores encontrados', sensores }), { status: 200 })
       } catch (err: any) {
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
