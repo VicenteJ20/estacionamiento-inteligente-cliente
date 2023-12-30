@@ -19,6 +19,7 @@ const TarjetaDeUso = () => {
       .then(async (res) => {
           const X = await res.json();
           setData(X.data)
+          console.log(X.data)
       })
       .catch((e) => {
           // Se deja un error como el 400 o 404 o que se yo -R
