@@ -124,10 +124,15 @@ const handler = async (req: NextRequest) => {
           ...body,
           fecha_ingreso: new Date()
         }
+        const res = await Sensor.create(newSensor)
 
-        await new Sensor(newSensor)
-
-        return new NextResponse(JSON.stringify({ message: 'Sensor creado' }), { status: 201 })
+        if (res) {
+          console.log(res, 'ENTRÓ AL IF')
+          return new NextResponse(JSON.stringify({ message: 'Sensor creado con éxito', data: res }), { status: 201 })
+        } else {
+          console.log(res, 'ENTRÓ AL ELSE')
+          return new NextResponse(JSON.stringify({ message: 'No se pudo crear el sensor' }), { status: 500 })
+        }
       } catch (err: any) {
         return new NextResponse(JSON.stringify({ message: err.message }), { status: 500 })
       }
